@@ -1,0 +1,35 @@
+<br>
+
+<div class="row">
+  <div class="col-md-6 col-lg-3" style="margin-bottom: 10px;">
+    <div class="card ">
+      <img src="https://www.kingarthurflour.com/sites/default/files/styles/featured_image/public/recipe_legacy/1344-3-large.jpg?itok=n_EPr6zZ" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Create Your Own Pizza</h5>
+        <p class="card-text"></p><p>&nbsp;</p>
+        <a routerLink="/pizza/build/size-crust" class="btn btn-primary">Costumize</a>
+      </div>
+    </div>
+  </div><br>
+  <div class="col-md-6 col-lg-3" *ngFor="let singlePizza of pizza" style="margin-bottom: 10px;">
+    <div class="card ">
+      <img src="{{ singlePizza.image}}" class="card-img-top" alt="..." style="max-height: 180px;">
+      <div class="card-body">
+        <h5 class="card-title">{{ singlePizza.pizzaName }}</h5>
+        <p class="card-text">
+          <select class="form-control d-inline col-8">
+            <option value="{{ singlePizza.price }}">$ {{ singlePizza.price }}</option>
+          </select>
+          <select class="form-control d-inline col-3 float-right">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </p>
+        <a href="#" class="btn btn-primary">Add to Cart</a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+<div class="container">
+  <br>
+  <h1>Build Your Own Pizza</h1>
+  <div>
+    <span>[4] Toppings</span> | <a href="#">Start Over</a>
+  </div>
+  <hr>
+  <div class="row">
+
+    <div class="col-md-4">
+      <div class="card">
+        
+        <div class="card-body">
+          <h5 class="card-title">Size &amp; Crust</h5>
+          <ul class="list-group" *ngIf="sizeCrustData.length">
+            <li class="list-group-item"><strong>style:</strong> {{ sizeCrustData[0] }}</li>
+            <li class="list-group-item"><strong>Size:</strong>  {{ sizeCrustData[1] }}</li>
+            <li class="list-group-item"><strong>Cut:</strong> {{ sizeCrustData[2] }}</li>
+            <li class="list-group-item"><strong>Sauce:</strong>  {{ sizeCrustData[3] }}</li>
+          </ul><hr>
+
+          <h5 class="card-title">Cheese</h5>
+          <ul class="list-group" *ngIf="cheeseData.length">
+            <li class="list-group-item"><strong>Amount:</strong> {{ cheeseData[0] }}</li>
+            <li class="list-group-item" *ngIf="cheeseData[1]"><strong>Extra Cheese Topping:</strong> {{ cheeseData[1] }}</li>
+          </ul><hr>
+
+          <h5 class="card-title">Meat Toppings</h5>
+          <ul class="list-group" *ngIf="meatData.length">
+            <li class="list-group-item" *ngFor="let meat of meatData">{{ meat }}</li>
+          </ul>
+          <hr>
+          <h5 class="card-title">Veggies Toppings</h5>
+          <ul class="list-group" *ngIf="veggiesData.length">
+            <li class="list-group-item" *ngFor="let veggie of veggiesData">{{ veggie }}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-8">
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <button type="button" class="btn btn-info"
+              routerLink="/pizza/build/size-crust"
+              routerLinkActive="active">Size &amp; Crust</button>
+      <button type="button" class="btn btn-info"
+              routerLink="/pizza/build/cheese"
+              routerLinkActive="active">Cheese</button>
+      <button type="button" class="btn btn-info"
+              routerLink="/pizza/build/meats"
+              routerLinkActive="active">Meats</button>
+      <button type="button" class="btn btn-info"
+              routerLink="/pizza/build/veggies"
+              routerLinkActive="active">Veggies</button>
+    </div>
+    <br><br>
+
+
+      <div>
+        <router-outlet></router-outlet>
+      </div>
+
+
+    </div>
+  </div>
+
+</div>

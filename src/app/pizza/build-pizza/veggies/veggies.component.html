@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-md-3" *ngFor="let veggie of veggies" (click)="selectVeggie(veggie)" style="cursor: pointer;">
+    <div class="card"  [class.selected]="veggie.selected">
+      <img class="card-img-top" src="{{veggie.image}}" alt="Card image cap">
+      <div class="card-body">
+        <p class="card-text">{{veggie.name}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+<button class="btn btn-dark" (click)="finish()">DONE</button>
