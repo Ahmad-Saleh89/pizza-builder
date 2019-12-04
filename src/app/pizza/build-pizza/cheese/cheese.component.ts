@@ -38,8 +38,6 @@ export class CheeseComponent implements OnInit {
     this.cheeseAmount = this.cheeseForm.value.amount;
     this.cheeseTopping = this.cheeseForm.value.topping;
 
-    console.log(this.cheeseTopping);
-
     // Clear the array, in case the user changed his mind
     this.myCheese = [];
     this.myCheese.push(this.cheeseAmount, this.cheeseTopping );

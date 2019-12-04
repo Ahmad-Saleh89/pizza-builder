@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentChecked } from '@angular/core';
 
 import { PreviousUrlService } from '../../services/previous-url.service';
 
@@ -22,13 +22,26 @@ export class BuildPizzaComponent implements OnInit {
 
   veggiesData = [];
 
+  selectedToppings: number = 0;
+
   constructor(private previousUrlService: PreviousUrlService, private pizzaService: PizzaService ) { }
 
   ngOnInit() {
     this.pizzaService.sizecrust.subscribe(data => this.sizeCrustData = data);
-    this.pizzaService.cheese.subscribe(data => this.cheeseData = data);
-    this.pizzaService.meat.subscribe(data => this.meatData = data);
-    this.pizzaService.veggies.subscribe(data => this.veggiesData = data);
+    this.pizzaService.cheese.subscribe((data) => {
+      this.cheeseData = data;
+      if(data[1]){
+        this.selectedToppings = 1;
+      }
+    });
+    this.pizzaService.meat.subscribe((data) => {
+      this.meatData = data;
+      this.selectedToppings += this.meatData.length;
+    });
+    this.pizzaService.veggies.subscribe((data) => {
+      this.veggiesData = data;
+      this.selectedToppings += this.veggiesData.length;
+    });
 
     console.log(this.previousUrlService.getPreviousUrl());
   }

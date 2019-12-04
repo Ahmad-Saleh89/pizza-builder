@@ -26,7 +26,7 @@ export class PizzaService {
   constructor() { }
 
   displaySizeCrustData(data) {
-    this.sizeCrustSource.next(data)
+    this.sizeCrustSource.next(data);
   }
 
   displayCheeseData(data) {
@@ -40,5 +40,4 @@ export class PizzaService {
   displayVeggiesData(data) {
     this.veggiesSource.next(data);
   }
-
 }
