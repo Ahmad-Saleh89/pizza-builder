@@ -1,7 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-
 import { PizzaService } from '../../../services/pizza.service';
 
 @Component({
@@ -19,7 +16,7 @@ export class VeggiesComponent implements OnInit {
 
   selectedVeggies = [];
 
-  constructor( private route: ActivatedRoute, private router: Router, private pizzaService: PizzaService) { }
+  constructor(private pizzaService: PizzaService) { }
 
   ngOnInit() {
   }
@@ -37,11 +34,8 @@ export class VeggiesComponent implements OnInit {
     }else{
       veggie.selected = true;
       this.selectedVeggies.push(veggie.name);
+      // Send the created array to the service 
+      this.pizzaService.displayVeggiesData(this.selectedVeggies);
     }
-  }
-
-  finish() {
-    // Send the created array to the service 
-    this.pizzaService.displayVeggiesData(this.selectedVeggies);
   }
 }

@@ -22,7 +22,8 @@ export class BuildPizzaComponent implements OnInit {
 
   veggiesData = [];
 
-  selectedToppings: number = 0;
+  // Optional Cheese Topping
+  cheeseTopping: number = 0;
 
   constructor(private previousUrlService: PreviousUrlService, private pizzaService: PizzaService ) { }
 
@@ -30,24 +31,17 @@ export class BuildPizzaComponent implements OnInit {
     this.pizzaService.sizecrust.subscribe(data => this.sizeCrustData = data);
     this.pizzaService.cheese.subscribe((data) => {
       this.cheeseData = data;
-      if(data[1]){
-        this.selectedToppings = 1;
-      }
+      // Check if optional cheese topping was selected
+      if(data[1]){this.cheeseTopping = 1;}
     });
-    this.pizzaService.meat.subscribe((data) => {
-      this.meatData = data;
-      this.selectedToppings += this.meatData.length;
-    });
-    this.pizzaService.veggies.subscribe((data) => {
-      this.veggiesData = data;
-      this.selectedToppings += this.veggiesData.length;
-    });
-
+    this.pizzaService.meat.subscribe(data => this.meatData = data);
+    this.pizzaService.veggies.subscribe(data => this.veggiesData = data);
+    
     console.log(this.previousUrlService.getPreviousUrl());
   }
-
 
   getPreviousUrl() {
     this.previousUrlService.getPreviousUrl();
   }
+
 }

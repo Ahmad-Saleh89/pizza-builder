@@ -1,7 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-
 import { PizzaService } from '../../../services/pizza.service';
 
 @Component({
@@ -11,6 +8,8 @@ import { PizzaService } from '../../../services/pizza.service';
 })
 export class MeatsComponent implements OnInit {
 
+// This part should be fetched and updated in the DB 
+// selected false or true should be updated in DB @@@@
   meats = [
     { name: 'Chicken', price: 1.5, image: 'https://www.fifteenspatulas.com/wp-content/uploads/2017/08/Mango-Cilantro-Coconut-Grilled-Chicken-Fifteen-Spatulas-1-640x427.jpg', selected: false },
     { name: 'Pepperoni', price: 1.4, image: 'https://www.fifteenspatulas.com/wp-content/uploads/2017/08/Mango-Cilantro-Coconut-Grilled-Chicken-Fifteen-Spatulas-1-640x427.jpg', selected: false },
@@ -19,10 +18,9 @@ export class MeatsComponent implements OnInit {
 
   selectedMeats = [];
 
-  constructor( private route: ActivatedRoute, private router: Router, private pizzaService: PizzaService) { }
+  constructor(private pizzaService: PizzaService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   selectMeat(meat) {
     /**
@@ -37,14 +35,8 @@ export class MeatsComponent implements OnInit {
     }else{
       meat.selected = true;
       this.selectedMeats.push(meat.name);
+      // Send the created array to the service 
+      this.pizzaService.displayMeatData(this.selectedMeats);
     }
-  }
-
-  goNext() {
-    // Send the created array to the service 
-    this.pizzaService.displayMeatData(this.selectedMeats);
-
-    // Navigate to the next section
-    this.router.navigate(['/pizza/build/veggies']);
   }
 }
