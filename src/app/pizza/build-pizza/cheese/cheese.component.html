@@ -2,16 +2,15 @@
 <div class="card">
   <div class="card-header">How much cheese?</div>
   <div class="card-body">
-    <div class="form-check d-inline p-4" *ngFor="let amount of cheeseAmounts">
+    <div class="form-check d-inline p-4" *ngFor="let amount of cheeseAmounts" (click)="selectAmount(amount)">
       <input class="form-check-input" type="radio" name="amount" [id]="amount" ngModel="Normal" [value]="amount">
-      <label class="form-check-label" [for]="crust">
+      <label class="form-check-label" [for]="amount">
         {{ amount }}
       </label>
     </div>
   </div>
 </div>
-<br>
-
+<!-- 
 <div class="card">
   <div class="card-header">Additional cheese toppings? (Optional)</div>
   <div class="card-body">
@@ -21,6 +20,22 @@
         {{ topping }}
       </label>
     </div>
+  </div>
+</div> -->
+
+<br>
+<div class="card">
+  <div class="card-header">Additional cheese toppings? (Optional)</div>
+  <div class="card-body row">
+
+  <div class="col-md-3" *ngFor="let topping of cheeseToppings" (click)="selectCheese(topping)" style="cursor: pointer;">
+    <div class="card"  [class.selected]="topping.selected">
+      <img class="card-img-top" src="{{topping.image}}" alt="{{ topping.name }}">
+      <div class="card-body">
+        <p class="card-text">{{ topping.name }}</p>
+      </div>
+    </div>
+  </div>
   </div>
 </div>
 

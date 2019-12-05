@@ -1,9 +1,9 @@
 <div class="row">
   <div class="col-md-3" *ngFor="let veggie of veggies" (click)="selectVeggie(veggie)" style="cursor: pointer;">
     <div class="card"  [class.selected]="veggie.selected">
-      <img class="card-img-top" src="{{veggie.image}}" alt="Card image cap">
+      <img class="card-img-top" src="{{veggie.image}}" alt="{{ veggie.name }}">
       <div class="card-body">
-        <p class="card-text">{{veggie.name}}</p>
+        <p class="card-text">{{ veggie.name }}</p>
       </div>
     </div>
   </div>

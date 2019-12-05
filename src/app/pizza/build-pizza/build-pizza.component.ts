@@ -22,6 +22,8 @@ export class BuildPizzaComponent implements OnInit {
 
   veggiesData = [];
 
+  toppings = [];
+
   // Optional Cheese Topping
   cheeseTopping: number = 0;
 
@@ -31,9 +33,8 @@ export class BuildPizzaComponent implements OnInit {
     this.pizzaService.sizecrust.subscribe(data => this.sizeCrustData = data);
     this.pizzaService.cheese.subscribe((data) => {
       this.cheeseData = data;
-      // Check if optional cheese topping was selected
-      if(data[1]){this.cheeseTopping = 1;}
-    });
+      this.toppings = this.cheeseData.slice(1, this.cheeseData.length);
+    }); 
     this.pizzaService.meat.subscribe(data => this.meatData = data);
     this.pizzaService.veggies.subscribe(data => this.veggiesData = data);
     
