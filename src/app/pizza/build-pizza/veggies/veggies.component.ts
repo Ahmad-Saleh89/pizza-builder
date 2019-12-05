@@ -18,24 +18,12 @@ export class VeggiesComponent implements OnInit {
 
   constructor(private pizzaService: PizzaService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   selectVeggie(veggie) {
-    /**
-     * First check if the item is alreay selected
-     * If "Yes" then delete item
-     * If "Not" then push it to the selectedVeggies array
-     */
-    if(this.selectedVeggies.indexOf(veggie.name) !== -1){
-      const index = this.selectedVeggies.indexOf(veggie.name);
-      this.selectedVeggies.splice(index, 1);
-      veggie.selected = false;
-    }else{
-      veggie.selected = true;
-      this.selectedVeggies.push(veggie.name);
-      // Send the created array to the service 
-      this.pizzaService.displayVeggiesData(this.selectedVeggies);
-    }
+    this.pizzaService.selectTopping(veggie, this.selectedVeggies);
+
+    // Send the created array to the service 
+    this.pizzaService.displayVeggiesData(this.selectedVeggies);
   }
 }

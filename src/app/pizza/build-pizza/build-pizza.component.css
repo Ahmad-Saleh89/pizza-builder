@@ -2,6 +2,6 @@
   padding: .3rem 1rem;
 }
 
-.selected {
-  border: 1px solid #17a2b8;
+.card-title {
+  color: #17a2b8;
 }

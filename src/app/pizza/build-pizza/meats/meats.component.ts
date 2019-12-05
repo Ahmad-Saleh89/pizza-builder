@@ -23,20 +23,9 @@ export class MeatsComponent implements OnInit {
   ngOnInit() { }
 
   selectMeat(meat) {
-    /**
-     * First check if the item is alreay selected
-     * If "Yes" then delete item
-     * If "Not" then push it to the selectedMeats array
-     */
-    if(this.selectedMeats.indexOf(meat.name) !== -1){
-      const index = this.selectedMeats.indexOf(meat.name);
-      this.selectedMeats.splice(index, 1);
-      meat.selected = false;
-    }else{
-      meat.selected = true;
-      this.selectedMeats.push(meat.name);
-      // Send the created array to the service 
-      this.pizzaService.displayMeatData(this.selectedMeats);
-    }
+    this.pizzaService.selectTopping(meat, this.selectedMeats);
+
+    // Send the created array to the service 
+    this.pizzaService.displayMeatData(this.selectedMeats);
   }
 }

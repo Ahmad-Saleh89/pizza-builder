@@ -2,7 +2,7 @@
   <br>
   <h1>Build Your Own Pizza</h1>
   <div>
-    <span>[{{ cheeseTopping + veggiesData.length + meatData.length }}] Toppings</span> | <a href="#">Start Over</a>
+    <span>[{{ cheeseToppings.length + veggiesData.length + meatData.length }}] Toppings</span> | <a href="#">Start Over</a>
   </div>
   <hr>
   <div class="row">
@@ -21,8 +21,8 @@
 
           <h5 class="card-title">Cheese</h5>
           <ul class="list-group" *ngIf="cheeseData.length">
-            <li class="list-group-item"><strong>Amount:</strong> {{ cheeseData[0] }}</li>
-            <li class="list-group-item" *ngIf="cheeseToppings.length"><strong>Extra Cheese Topping: </strong> 
+            <li class="list-group-item"><strong>Cheese Amount:</strong> {{ cheeseData[0] }}</li>
+            <li class="list-group-item" *ngIf="cheeseToppings.length"><strong>Extra Cheese Toppings: </strong> 
             <span *ngFor="let topping of cheeseToppings">({{ topping }}) </span></li>
           </ul><hr>
 
