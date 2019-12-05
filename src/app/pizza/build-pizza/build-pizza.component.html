@@ -22,8 +22,8 @@
           <h5 class="card-title">Cheese</h5>
           <ul class="list-group" *ngIf="cheeseData.length">
             <li class="list-group-item"><strong>Amount:</strong> {{ cheeseData[0] }}</li>
-            <li class="list-group-item" *ngIf="toppings.length"><strong>Extra Cheese Topping: </strong> 
-            <span *ngFor="let topping of toppings">{{ topping }} - </span></li>
+            <li class="list-group-item" *ngIf="cheeseToppings.length"><strong>Extra Cheese Topping: </strong> 
+            <span *ngFor="let topping of cheeseToppings">({{ topping }}) </span></li>
           </ul><hr>
 
           <h5 class="card-title">Meat Toppings</h5>
