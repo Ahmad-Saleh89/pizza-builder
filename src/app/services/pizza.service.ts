@@ -81,3 +81,4 @@ export class PizzaService {
 
 // Look at this example:
 // https://stackblitz.com/edit/angular-6-communicating-between-components-1gunkw?file=app%2Fapp.component.ts
+// And this video https://www.youtube.com/watch?v=I317BhehZKM
