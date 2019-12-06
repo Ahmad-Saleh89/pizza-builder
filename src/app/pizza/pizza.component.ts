@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { PizzaService } from '../services/pizza.service';
 
 import { Pizza } from '../interfaces/pizza';
 
@@ -13,26 +12,15 @@ export class PizzaComponent implements OnInit {
 
   pizza: Pizza[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private pizzaService: PizzaService) {}
 
   ngOnInit() {
     this.fetchPizza();
   }
 
-  private fetchPizza() {
-    this.http.get<{ [pizza: string]: Pizza }>('https://pizzana-4b4ac.firebaseio.com/pizza.json')
-        .pipe(map(pizzaData => {
-          const pizzaArray = [];
-          for (const pizza in pizzaData ) {
-            if (pizzaData.hasOwnProperty(pizza)) { // just to make sure we don't access some prototype property
-              pizzaArray.push({...pizzaData[pizza], pizzaName: pizza});
-            }
-          }
-          return pizzaArray;
-        }))
-        .subscribe(pizza => {
-          this.pizza = pizza; 
-        });
+  fetchPizza(): void {
+   this.pizzaService.fetchPizza()
+       .subscribe(pizza => this.pizza = pizza);
   }
 }
 
