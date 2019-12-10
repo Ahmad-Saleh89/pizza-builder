@@ -103,6 +103,7 @@ export class PizzaService {
 
 
 
-// Look at this example:
+// Look at these examples:
 // https://stackblitz.com/edit/angular-6-communicating-between-components-1gunkw?file=app%2Fapp.component.ts
+// https://www.youtube.com/watch?v=oj6Tae2oSo0
 // And this video https://www.youtube.com/watch?v=I317BhehZKM
