@@ -27,8 +27,9 @@ export class BuildPizzaComponent implements OnInit {
   constructor(private previousUrlService: PreviousUrlService, private pizzaService: PizzaService ) { }
 
   ngOnInit() {
+    // First Approach
     this.pizzaService.sizecrust.subscribe(data => this.sizeCrustData = data);
-
+    // Second Approach
     this.pizzaService.getMeatData().subscribe(data => this.meat$ = data);
     this.pizzaService.getVeggiesData().subscribe(data => this.veggies$ = data);    
     this.pizzaService.getCheeseData().subscribe((data) => {

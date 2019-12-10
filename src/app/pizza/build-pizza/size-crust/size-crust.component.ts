@@ -45,7 +45,7 @@ export class SizeCrustComponent implements OnInit {
     this.myPizza.push(this.crustStyle, this.pizzaSize, this.pizzaCut, this.sauce );
 
     // Send the created array to the service 
-    this.pizzaService.displaySizeCrustData(this.myPizza);
+    this.pizzaService.updateSizeCrustData(this.myPizza);
 
     // Navigate to the next section
     this.router.navigate(['/pizza/build/cheese']);
