@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
@@ -15,35 +15,17 @@ export class PizzaService {
   private sizeCrustSource = new BehaviorSubject(this.sizeCrustData);
   sizecrust = this.sizeCrustSource.asObservable();
 
-  cheeseData = [];
-  private cheeseSource = new BehaviorSubject(this.cheeseData);
-  cheese = this.cheeseSource.asObservable();
+  private cheeseSubject = new Subject<any[]>();
+  private meatSubject = new Subject<any[]>();
+  private veggiesSubject = new Subject<any[]>();
 
-  meatData = [];
-  private meatSource = new BehaviorSubject(this.meatData);
-  meat = this.meatSource.asObservable();
-
-  veggiesData = [];
-  private veggiesSource = new BehaviorSubject(this.veggiesData);
-  veggies = this.veggiesSource.asObservable();
+  private allToppings = [];
 
   constructor(private http: HttpClient) { }
 
 // Display user selected options and toppings
   displaySizeCrustData(data) {
     this.sizeCrustSource.next(data);
-  }
-
-  displayCheeseData(data) {
-    this.cheeseSource.next(data);
-  }
-
-  displayMeatData(data) {
-    this.meatSource.next(data);
-  }
-
-  displayVeggiesData(data) {
-    this.veggiesSource.next(data);
   }
 
 // Fetch all pizza from the server
@@ -71,11 +53,34 @@ export class PizzaService {
       const index = selectedToppings.indexOf(topping.name);
       selectedToppings.splice(index, 1);
       topping.selected = false;
-      console.log(selectedToppings);
     }else{
       topping.selected = true;
       selectedToppings.push(topping.name);
     }
+  }
+
+  // Send & Get Cheese Data
+  sendCheeseData(data) {
+    this.cheeseSubject.next(data);
+  }
+  getCheeseData(): Observable<any> {
+    return this.cheeseSubject.asObservable();
+  }
+
+  // Send & Get Meat Data
+  sendMeatData(data) {
+    this.meatSubject.next(data);
+  }
+  getMeatData(): Observable<any> {
+    return this.meatSubject.asObservable();
+  }
+
+  // Send & Get Veggies Data
+  sendVeggiesData(data) {
+    this.veggiesSubject.next(data);
+  }
+  getVeggiesData(): Observable<any> {
+    return this.veggiesSubject.asObservable();
   }
 }
 

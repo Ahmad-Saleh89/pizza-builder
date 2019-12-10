@@ -1,4 +1,5 @@
-import { Component, OnInit, AfterContentChecked } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 import { PreviousUrlService } from '../../services/previous-url.service';
 
@@ -16,27 +17,27 @@ export class BuildPizzaComponent implements OnInit {
 
   sizeCrustData = [];
 
-  cheeseData = []; // See notes below
-  cheeseToppings = [];
+  cheese$ = []; // observable
+  cheeseToppings = []; // See notes below
 
-  meatData = [];
-
-  veggiesData = [];
+  meat$ = []; // observable
+  veggies$ = []; // observable
 
 
   constructor(private previousUrlService: PreviousUrlService, private pizzaService: PizzaService ) { }
 
   ngOnInit() {
     this.pizzaService.sizecrust.subscribe(data => this.sizeCrustData = data);
-    this.pizzaService.cheese.subscribe((data) => {
-      this.cheeseData = data;
+
+    this.pizzaService.getMeatData().subscribe(data => this.meat$ = data);
+    this.pizzaService.getVeggiesData().subscribe(data => this.veggies$ = data);    
+    this.pizzaService.getCheeseData().subscribe((data) => {
+      this.cheese$ = data;
       // Slice the cheese amount part from the array - leave the toppings only
-      this.cheeseToppings = this.cheeseData.slice(1, this.cheeseData.length);
-    }); 
-    this.pizzaService.meat.subscribe(data => this.meatData = data);
-    this.pizzaService.veggies.subscribe(data => this.veggiesData = data);
+      this.cheeseToppings = this.cheese$.slice(1, this.cheese$.length);
+    });
     
-    console.log(this.previousUrlService.getPreviousUrl());
+    // console.log(this.previousUrlService.getPreviousUrl());
   }
 
   getPreviousUrl() {
@@ -47,9 +48,9 @@ export class BuildPizzaComponent implements OnInit {
 
 // Notes:
 /**
- * cheeseData array contains 2 different parts about cheese
- * The first part cheeseData[0] will hold the cheese amount
- * The second part cheeseData[1],[2],... will contain the OPTIONAL cheese toppings
- * cheeseData will look something like this: ['cheese amount', 'cheese toppings .....']
+ * cheese$ array contains 2 different parts about cheese
+ * The first part cheese$[0] will hold the cheese amount
+ * The second part cheese$[1],[2],... will contain the OPTIONAL cheese toppings
+ * cheese$ will look something like this: ['cheese amount', 'cheese toppings .....']
  * ['Normal', 'Mozzarella', 'Cheddar']
 */

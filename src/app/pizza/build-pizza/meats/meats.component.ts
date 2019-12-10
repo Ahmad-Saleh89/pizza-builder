@@ -24,8 +24,10 @@ export class MeatsComponent implements OnInit {
 
   selectMeat(meat) {
     this.pizzaService.selectTopping(meat, this.selectedMeats);
-
     // Send the created array to the service 
-    this.pizzaService.displayMeatData(this.selectedMeats);
+    // this.pizzaService.displayMeatData(this.selectedMeats);
+
+    this.pizzaService.sendMeatData(this.selectedMeats);
+
   }
 }

@@ -35,12 +35,12 @@ export class CheeseComponent implements OnInit {
 
   selectAmount(amount) {
     this.myCheese[0] = amount;
-    this.pizzaService.displayCheeseData(this.myCheese);
+    this.pizzaService.sendCheeseData(this.myCheese);
   }
 
   selectCheese(cheeseTopping) {
     this.pizzaService.selectTopping(cheeseTopping, this.myCheese);
-    this.pizzaService.displayCheeseData(this.myCheese);
+    this.pizzaService.sendCheeseData(this.myCheese);
   }
 
   onSubmit() {

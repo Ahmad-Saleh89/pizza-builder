@@ -24,6 +24,8 @@ export class VeggiesComponent implements OnInit {
     this.pizzaService.selectTopping(veggie, this.selectedVeggies);
 
     // Send the created array to the service 
-    this.pizzaService.displayVeggiesData(this.selectedVeggies);
+    // this.pizzaService.displayVeggiesData(this.selectedVeggies);
+
+    this.pizzaService.sendVeggiesData(this.selectedVeggies);
   }
 }
