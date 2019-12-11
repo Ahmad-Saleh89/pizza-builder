@@ -15,7 +15,7 @@ export class PizzaService {
   // First Approach using BehaviorSubject
   defaultSizeCrust = ["Original", "Medium", "Normal", "BBQ"];
   private sizeCrustSource = new BehaviorSubject(this.defaultSizeCrust);
-  private sizecrust = this.sizeCrustSource.asObservable();
+  sizecrust = this.sizeCrustSource.asObservable();
   // Second Approach using Subject
   private cheeseSubject = new Subject<any[]>();
   private meatSubject = new Subject<any[]>();
