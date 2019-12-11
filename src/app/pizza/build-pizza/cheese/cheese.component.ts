@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { PizzaService } from '../../../services/pizza.service';
+import { CheeseService } from '../../../services/cheese.service';
 
 @Component({
   selector: 'app-cheese',
@@ -28,10 +29,19 @@ export class CheeseComponent implements OnInit {
   // The first element will be the cheese amount
   myCheese = ['Normal'];
 
-  constructor( private route: ActivatedRoute, private router: Router, private pizzaService: PizzaService) { }
+  // ------------------------------
+  newCheese = [];
 
-  ngOnInit() { }
+  constructor( private route: ActivatedRoute, private router: Router, private pizzaService: PizzaService, private cheeseService: CheeseService) { }
 
+  ngOnInit() {
+    this.fetchCheese();
+  }
+
+  fetchCheese(): void {
+   this.cheeseService.fetchCheese()
+       .subscribe(cheese => this.newCheese = cheese);
+  }
 
   selectAmount(amount) {
     this.myCheese[0] = amount;

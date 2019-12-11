@@ -19,11 +19,12 @@ import { MeatsComponent } from './pizza/build-pizza/meats/meats.component';
 import { VeggiesComponent } from './pizza/build-pizza/veggies/veggies.component';
 import { PreviousUrlService } from './services/previous-url.service';
 import { PizzaService } from './services/pizza.service';
+import { CheeseService } from './services/cheese.service';
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule, AppRoutingModule, HttpClientModule ],
   declarations: [ AppComponent, HeaderComponent, PizzaComponent, SidesComponent, DessertsComponent, DrinksComponent, PageNotFoundComponent, BuildPizzaComponent, SizeCrustComponent, CheeseComponent, MeatsComponent, VeggiesComponent ],
   bootstrap:    [ AppComponent ],
-  providers: [PreviousUrlService, PizzaService]
+  providers: [PreviousUrlService, PizzaService, CheeseService]
 })
 export class AppModule { }
