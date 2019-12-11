@@ -3,8 +3,8 @@
   <div class="card-header">Crust Style</div>
   <div class="card-body">
     <div class="form-check d-inline p-4" *ngFor="let crust of crustStyles">
-      <input class="form-check-input" type="radio" name="crust" [id]="crust" ngModel="Original" [value]="crust">
-      <label class="form-check-label" [for]="crust">
+      <input class="form-check-input" type="radio" name="crust" [id]="crust" ngModel="Original" [value]="crust" (click)="onSelect(0, crust)">
+      <label class="form-check-label" [for]="crust" (click)="onSelect(0, crust)">
         {{ crust }}
       </label>
     </div>
@@ -16,8 +16,8 @@
   <div class="card-header">Pizza Size</div>
   <div class="card-body">
     <div class="form-check d-inline p-4" *ngFor="let size of pizzaSizes">
-      <input class="form-check-input" type="radio" name="size" [id]="size" ngModel="Medium" [value]="size">
-      <label class="form-check-label" [for]="size">
+      <input class="form-check-input" type="radio" name="size" [id]="size" ngModel="Medium" [value]="size" (click)="onSelect(1, size)">
+      <label class="form-check-label" [for]="size" (click)="onSelect(1, size)">
         {{ size }}
       </label>
     </div>
@@ -29,8 +29,8 @@
   <div class="card-header">Cut</div>
   <div class="card-body">
     <div class="form-check d-inline p-4" *ngFor="let cut of pizzaCuts">
-      <input class="form-check-input" type="radio" name="cut" [id]="cut" ngModel="Normal" [value]="cut">
-      <label class="form-check-label" [for]="cut">
+      <input class="form-check-input" type="radio" name="cut" [id]="cut" ngModel="Normal" [value]="cut" (click)="onSelect(2, cut)">
+      <label class="form-check-label" [for]="cut" (click)="onSelect(2, cut)">
         {{ cut }}
       </label>
     </div>
@@ -42,8 +42,8 @@
   <div class="card-header">Sauce</div>
   <div class="card-body">
     <div class="form-check d-inline p-4" *ngFor="let sauce of sauces">
-      <input class="form-check-input" type="radio" name="sauce" [id]="sauce" ngModel="BBQ" [value]="sauce">
-      <label class="form-check-label" [for]="sauce">
+      <input class="form-check-input" type="radio" name="sauce" [id]="sauce" ngModel="BBQ" [value]="sauce" (click)="onSelect(3, sauce)">
+      <label class="form-check-label" [for]="sauce" (click)="onSelect(3, sauce)">
         {{ sauce }}
       </label>
     </div>

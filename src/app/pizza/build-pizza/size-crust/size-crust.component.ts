@@ -20,33 +20,21 @@ export class SizeCrustComponent implements OnInit {
   pizzaCuts = ['Normal', 'Square', 'No Cut'];
   sauces = ['BBQ', 'Alfredo', 'Ranch', 'Buffalo'];
 
-  crustStyle = '';
-  pizzaSize = '';
-  pizzaCut = '';
-  sauce = '';
-
-  // Store the chosen Size & Crust info in this array
-  myPizza = [];
+  // Default [cruststyle,  size,     cut,    sauce]
+  myPizza = ['Original', 'Medium', 'Normal', 'BBQ'];
 
   constructor( private route: ActivatedRoute, private router: Router, private pizzaService: PizzaService) { }
 
   ngOnInit() {  }
 
-
-  onSubmit() {
-    this.submitted = true;
-    this.crustStyle = this.crustForm.value.crust;
-    this.pizzaSize = this.crustForm.value.size;
-    this.pizzaCut = this.crustForm.value.cut;
-    this.sauce = this.crustForm.value.sauce;
-
-    // Clear the array, in case the user changed his mind
-    this.myPizza = [];
-    this.myPizza.push(this.crustStyle, this.pizzaSize, this.pizzaCut, this.sauce );
-
+  // Update myPizza array on select
+  onSelect(index, elem) {
+    this.myPizza[index] = elem;
     // Send the created array to the service 
     this.pizzaService.updateSizeCrustData(this.myPizza);
-
+  }
+  onSubmit() {
+    this.submitted = true;
     // Navigate to the next section
     this.router.navigate(['/pizza/build/cheese']);
   }
