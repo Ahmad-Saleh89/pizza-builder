@@ -12,15 +12,16 @@ export class CheeseService {
 
 // Fetch Cheese data from the server
   fetchCheese() {
-    return this.http.get<{ [cheese: string]: Cheese }>('https://pizzana-4b4ac.firebaseio.com/cheese.json')
+    return this.http.get<any>('https://pizzana-4b4ac.firebaseio.com/cheese.json')
       .pipe(map(cheeseData => {
-        // const cheeseArray = [];
-        // for (const cheese in cheeseData ) {
-        //   cheeseArray.push({...cheeseArray[cheese]});
-        // }
-        // console.log(cheeseArray);
-        // return cheeseArray;
-        console.log(cheeseData.amount);
+        const cheeseArray = [];
+        for (const key in cheeseData ) {
+          cheeseArray.push({...cheeseData[key]});
+        }
+        for (const key of cheeseArray){
+          console.log(key);
+        }
+        return cheeseArray;
       }));
   }
 
