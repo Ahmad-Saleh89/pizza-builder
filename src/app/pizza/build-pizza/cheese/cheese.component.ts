@@ -14,33 +14,39 @@ export class CheeseComponent implements OnInit {
 
   @ViewChild('cheeseForm', { static: false }) cheeseForm: NgForm;
 
-  submitted = false;
+  // cheeseToppings = [
+  //   { name: 'Mozzarella', price: 1.2, image: 'https://www.thespruceeats.com/thmb/q13nRIYKHXEEX99rB5118QT6c3s=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/Parmesan-cheese-GettyImages-117078872-5873ca725f9b584db3463216.jpg', selected: false },
+  //   { name: 'Parmesan', price: 1.4, image: 'https://www.thespruceeats.com/thmb/q13nRIYKHXEEX99rB5118QT6c3s=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/Parmesan-cheese-GettyImages-117078872-5873ca725f9b584db3463216.jpg', selected: false },
+  //   { name: 'Cheddar', price: 0.8, image: 'https://www.thespruceeats.com/thmb/q13nRIYKHXEEX99rB5118QT6c3s=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/Parmesan-cheese-GettyImages-117078872-5873ca725f9b584db3463216.jpg', selected: false }
+  // ];
 
-  cheeseAmounts = ['Normal', 'Light', 'None'];
-
-  cheeseToppings = [
-    { name: 'Mozzarella', price: 1.2, image: 'https://www.thespruceeats.com/thmb/q13nRIYKHXEEX99rB5118QT6c3s=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/Parmesan-cheese-GettyImages-117078872-5873ca725f9b584db3463216.jpg', selected: false },
-    { name: 'Parmesan', price: 1.4, image: 'https://www.thespruceeats.com/thmb/q13nRIYKHXEEX99rB5118QT6c3s=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/Parmesan-cheese-GettyImages-117078872-5873ca725f9b584db3463216.jpg', selected: false },
-    { name: 'Cheddar', price: 0.8, image: 'https://www.thespruceeats.com/thmb/q13nRIYKHXEEX99rB5118QT6c3s=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/Parmesan-cheese-GettyImages-117078872-5873ca725f9b584db3463216.jpg', selected: false }
-  ];
-
+  cheeseAmounts = [];
+  toppings = [];
 
   // Store the chosen Cheese info in this array
-  // The first element will be the cheese amount
+  // The first element will be the cheese amount - the rest will be the toppings
   myCheese = ['Normal'];
-
-  // ------------------------------
-  newCheese = [];
 
   constructor( private route: ActivatedRoute, private router: Router, private pizzaService: PizzaService, private cheeseService: CheeseService) { }
 
   ngOnInit() {
-    this.fetchCheese();
+    this.fetchCheeseAmount();
+    this.fetchCheeseToppings();
   }
 
-  fetchCheese(): void {
-   this.cheeseService.fetchCheese()
-       .subscribe(cheese => this.newCheese = cheese);
+  fetchCheeseAmount(): void {
+   this.cheeseService.getCheeseAmounts()
+       .subscribe(amounts => {
+         this.cheeseAmounts = amounts;
+       });
+  }
+
+  fetchCheeseToppings(): void {
+   this.cheeseService.getCheeseToppings()
+       .subscribe(toppings => {
+         this.toppings = toppings;
+         console.log(toppings);
+       });
   }
 
   selectAmount(amount) {
@@ -54,7 +60,6 @@ export class CheeseComponent implements OnInit {
   }
 
   onSubmit() {
-    this.submitted = true;
     this.router.navigate(['/pizza/build/meats']);
   }
 }
