@@ -12,20 +12,14 @@ import { CheeseService } from '../../../services/cheese.service';
 })
 export class CheeseComponent implements OnInit {
 
-  @ViewChild('cheeseForm', { static: false }) cheeseForm: NgForm;
-
-  // cheeseToppings = [
-  //   { name: 'Mozzarella', price: 1.2, image: 'https://www.thespruceeats.com/thmb/q13nRIYKHXEEX99rB5118QT6c3s=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/Parmesan-cheese-GettyImages-117078872-5873ca725f9b584db3463216.jpg', selected: false },
-  //   { name: 'Parmesan', price: 1.4, image: 'https://www.thespruceeats.com/thmb/q13nRIYKHXEEX99rB5118QT6c3s=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/Parmesan-cheese-GettyImages-117078872-5873ca725f9b584db3463216.jpg', selected: false },
-  //   { name: 'Cheddar', price: 0.8, image: 'https://www.thespruceeats.com/thmb/q13nRIYKHXEEX99rB5118QT6c3s=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/Parmesan-cheese-GettyImages-117078872-5873ca725f9b584db3463216.jpg', selected: false }
-  // ];
+  // @ViewChild('cheeseForm', { static: false }) cheeseForm: NgForm;
 
   cheeseAmounts = [];
   toppings = [];
 
   // Store the chosen Cheese info in this array
   // The first element will be the cheese amount - the rest will be the toppings
-  myCheese = ['Normal'];
+  myCheese = [];
 
   constructor( private route: ActivatedRoute, private router: Router, private pizzaService: PizzaService, private cheeseService: CheeseService) { }
 
@@ -34,19 +28,36 @@ export class CheeseComponent implements OnInit {
     this.fetchCheeseToppings();
   }
 
+
   fetchCheeseAmount(): void {
    this.cheeseService.getCheeseAmounts()
-       .subscribe(amounts => {
-         this.cheeseAmounts = amounts;
-       });
+      .subscribe(amounts => {
+        this.cheeseAmounts = amounts;
+        for (const elem of this.cheeseAmounts){
+          //  Check for the selected amount with value "true"
+          if(elem[1]){
+            this.myCheese[0] = elem[0];
+          }
+        }
+      });
   }
 
   fetchCheeseToppings(): void {
    this.cheeseService.getCheeseToppings()
-       .subscribe(toppings => {
-         this.toppings = toppings;
-         console.log(toppings);
-       });
+      .subscribe(toppings => {
+        this.toppings = toppings;
+        for (const topping of this.toppings){
+          //  Check if there's any topping has been selected
+          if(topping[2]){
+            this.myCheese.push(topping[0]);
+          }
+        }
+      });
+  }
+
+  updateCheese(){
+   this.cheeseService.updateCheeseAmount()
+      .subscribe();
   }
 
   selectAmount(amount) {
@@ -61,5 +72,6 @@ export class CheeseComponent implements OnInit {
 
   onSubmit() {
     this.router.navigate(['/pizza/build/meats']);
+    this.pizzaService.sendCheeseData(this.myCheese);
   }
 }
