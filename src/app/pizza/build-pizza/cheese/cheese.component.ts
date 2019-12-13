@@ -19,7 +19,7 @@ export class CheeseComponent implements OnInit {
 
   // Store the chosen Cheese info in this array
   // The first element will be the cheese amount - the rest will be the toppings
-  myCheese = [];
+  myCheese = ["Normal"];
 
   constructor( private route: ActivatedRoute, private router: Router, private pizzaService: PizzaService, private cheeseService: CheeseService) { }
 
@@ -33,9 +33,6 @@ export class CheeseComponent implements OnInit {
    this.cheeseService.getCheeseAmounts()
       .subscribe(amounts => {
         this.cheeseAmounts = amounts;
-        for (const elem of this.cheeseAmounts){
-            this.myCheese[0] = elem;
-        }
       });
   }
 
@@ -43,12 +40,11 @@ export class CheeseComponent implements OnInit {
    this.cheeseService.getCheeseToppings()
       .subscribe(toppings => {
         this.toppings = toppings;
-        console.log(this.toppings)
       });
   }
 
   selectAmount(amount) {
-    this.myCheese[0] = amount;
+    this.myCheese[0] = amount.amount;
     this.pizzaService.sendCheeseData(this.myCheese);
   }
 

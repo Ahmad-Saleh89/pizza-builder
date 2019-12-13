@@ -1,22 +1,27 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Cheese } from '../classes/cheese';
 
 @Injectable()
 export class CheeseService {
 
+  cheeseAmounts = [];
+
   constructor(private http: HttpClient) { }
 
 // Fetch Cheese Amounts data from the server
   getCheeseAmounts() {
-    return this.http.get<any>('https://pizzana-4b4ac.firebaseio.com/cheese.json')
+     return this.http.get<any>('https://pizzana-4b4ac.firebaseio.com/cheese.json')
       .pipe(map(cheeseData => {
-            const cheeseAmounts = [];
+            this.cheeseAmounts = [];
             for (const val in cheeseData.amounts){
-              cheeseAmounts.push(cheeseData.amounts[val]);
+              this.cheeseAmounts.push({
+                amount: val,
+                selected: cheeseData.amounts[val].selected});
             }
-        return cheeseAmounts;
+        return this.cheeseAmounts;
       }));
   }
 
