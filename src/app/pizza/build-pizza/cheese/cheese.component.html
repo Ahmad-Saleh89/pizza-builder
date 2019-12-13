@@ -16,7 +16,7 @@
   <div class="card-header">Additional cheese toppings? (Optional)</div>
   <div class="card-body row">
 
-  <div class="col-md-4" *ngFor="let topping of toppings" (click)="selectCheese(topping.name)" style="cursor: pointer;">
+  <div class="col-md-4" *ngFor="let topping of toppings" (click)="selectCheese(topping)" style="cursor: pointer;">
     <div class="card"  [class.selected]="topping.selected">
       <img class="card-img-top" src="{{ topping.image }}" alt="{{ topping.name }}">
       <div class="card-body">

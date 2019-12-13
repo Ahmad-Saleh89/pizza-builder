@@ -73,14 +73,15 @@ export class PizzaService {
      * If "Yes" then delete item
      * If "Not" then push it to the selectedToppings array
      */
-    if(selectedToppings.indexOf(topping) !== -1){
-      const index = selectedToppings.indexOf(topping);
+    if(selectedToppings.indexOf(topping.name) !== -1){
+      const index = selectedToppings.indexOf(topping.name);
       selectedToppings.splice(index, 1);
-      // topping.selected = false;
+      topping.selected = false;
     }else{
-      // topping.selected = true;
-      selectedToppings.push(topping);
+      topping.selected = true;
+      selectedToppings.push(topping.name);
     }
+    console.log(selectedToppings);
   }
 }
 
