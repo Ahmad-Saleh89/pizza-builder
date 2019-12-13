@@ -34,10 +34,7 @@ export class CheeseComponent implements OnInit {
       .subscribe(amounts => {
         this.cheeseAmounts = amounts;
         for (const elem of this.cheeseAmounts){
-          //  Check for the selected amount with value "true"
-          if(elem[1]){
-            this.myCheese[0] = elem[0];
-          }
+            this.myCheese[0] = elem;
         }
       });
   }
@@ -46,18 +43,8 @@ export class CheeseComponent implements OnInit {
    this.cheeseService.getCheeseToppings()
       .subscribe(toppings => {
         this.toppings = toppings;
-        for (const topping of this.toppings){
-          //  Check if there's any topping has been selected
-          if(topping[2]){
-            this.myCheese.push(topping[0]);
-          }
-        }
+        console.log(this.toppings)
       });
-  }
-
-  updateCheese(){
-   this.cheeseService.updateCheeseAmount()
-      .subscribe();
   }
 
   selectAmount(amount) {
