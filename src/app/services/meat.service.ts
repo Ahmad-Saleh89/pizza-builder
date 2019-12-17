@@ -7,7 +7,7 @@ export class MeatService {
 
   constructor(private http: HttpClient) { }
 
-// Fetch all pizza from the server
+// Fetch meats from the server
   getMeatToppings() {
     return this.http.get<any>('https://pizzana-4b4ac.firebaseio.com/meats.json')
       .pipe(map(meatData => {

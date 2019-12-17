@@ -21,11 +21,12 @@ import { PreviousUrlService } from './services/previous-url.service';
 import { PizzaService } from './services/pizza.service';
 import { CheeseService } from './services/cheese.service';
 import { MeatService } from './services/meat.service';
+import { VeggiesService } from './services/veggies.service';
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule, AppRoutingModule, HttpClientModule ],
   declarations: [ AppComponent, HeaderComponent, PizzaComponent, SidesComponent, DessertsComponent, DrinksComponent, PageNotFoundComponent, BuildPizzaComponent, SizeCrustComponent, CheeseComponent, MeatsComponent, VeggiesComponent ],
   bootstrap:    [ AppComponent ],
-  providers: [PreviousUrlService, PizzaService, CheeseService, MeatService]
+  providers: [PreviousUrlService, PizzaService, CheeseService, MeatService, VeggiesService]
 })
 export class AppModule { }

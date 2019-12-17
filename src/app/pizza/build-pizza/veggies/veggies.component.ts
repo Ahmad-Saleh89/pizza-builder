@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { PizzaService } from '../../../services/pizza.service';
+import { VeggiesService } from '../../../services/veggies.service';
 
 @Component({
   selector: 'app-veggies',
@@ -8,17 +9,22 @@ import { PizzaService } from '../../../services/pizza.service';
 })
 export class VeggiesComponent implements OnInit {
 
-  veggies = [
-    { name: 'Tomato', price: 0.5, image: 'https://grist.files.wordpress.com/2009/09/tomato.jpg', selected: false },
-    { name: 'Pineapple', price: 0.5, image: 'https://grist.files.wordpress.com/2009/09/tomato.jpg', selected: false },
-    { name: 'Onions', price: 0.5, image: 'https://grist.files.wordpress.com/2009/09/tomato.jpg', selected: false }
-  ];
+  veggies = [];
 
   selectedVeggies = [];
 
-  constructor(private pizzaService: PizzaService) { }
+  constructor(private pizzaService: PizzaService, private veggiesService: VeggiesService) { }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    this.fetchVeggiesToppings();
+  }
+
+  fetchVeggiesToppings(): void {
+   this.veggiesService.getVeggiesToppings()
+      .subscribe(veggies => {
+        this.veggies = veggies;
+      });
+  }
 
   selectVeggie(veggie) {
     this.pizzaService.selectTopping(veggie, this.selectedVeggies);
