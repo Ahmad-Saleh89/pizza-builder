@@ -25,7 +25,6 @@ export class MeatsComponent implements OnInit {
    this.meatService.getMeatToppings()
       .subscribe(meats => {
         this.meats = meats;
-        console.log(meats)
       });
   }
 
