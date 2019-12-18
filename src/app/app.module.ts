@@ -23,11 +23,12 @@ import { CheeseService } from './services/cheese.service';
 import { MeatService } from './services/meat.service';
 import { VeggiesService } from './services/veggies.service';
 import { CartComponent } from './cart/cart.component';
+import { CartService } from './services/cart.service';
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule, AppRoutingModule, HttpClientModule ],
   declarations: [ AppComponent, HeaderComponent, PizzaComponent, SidesComponent, DessertsComponent, DrinksComponent, PageNotFoundComponent, BuildPizzaComponent, SizeCrustComponent, CheeseComponent, MeatsComponent, VeggiesComponent, CartComponent ],
   bootstrap:    [ AppComponent ],
-  providers: [PreviousUrlService, PizzaService, CheeseService, MeatService, VeggiesService]
+  providers: [PreviousUrlService, PizzaService, CheeseService, MeatService, VeggiesService, CartService]
 })
 export class AppModule { }

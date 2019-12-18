@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { PreviousUrlService } from '../../services/previous-url.service';
 
 import { PizzaService } from '../../services/pizza.service';
+import { CartService } from '../../services/cart.service';
 
 // import { Sizecrust } from '../../interfaces/sizecrust';
 // import { Cheese } from '../../interfaces/cheese';
@@ -23,8 +24,7 @@ export class BuildPizzaComponent implements OnInit {
   meat$ = []; // observable
   veggies$ = []; // observable
 
-
-  constructor(private previousUrlService: PreviousUrlService, private pizzaService: PizzaService ) { }
+  constructor(private previousUrlService: PreviousUrlService, private pizzaService: PizzaService, private cartService: CartService ) { }
 
   ngOnInit() {
     // First Approach
@@ -43,7 +43,7 @@ export class BuildPizzaComponent implements OnInit {
 
   addToCart() {
     const toppings = [this.sizeCrustData, this.cheese$, this.meat$, this.veggies$];
-    console.log(toppings);
+    this.cartService.sendPizzaOrder(toppings);
   }
 
   // getPreviousUrl() {
