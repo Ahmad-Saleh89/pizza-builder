@@ -3,7 +3,7 @@
     <div class="card"  [class.selected]="meat.selected">
       <img class="card-img-top" src="{{meat.image}}" alt="{{ meat.name }}">
       <div class="card-body">
-        <p class="card-text">{{ meat.name }} <br> ${{ meat.price }}</p>
+        <p class="card-text">{{ meat.name }}</p>
       </div>
     </div>
   </div>
@@ -11,6 +11,6 @@
 
 <br>
 <div class="row">
-  <button class="btn btn-dark" routerLink="/pizza/build/cheese">Previous</button> &nbsp;
+  <button class="btn btn-dark" routerLink="/pizza/build/cheese">PREVIOUS</button> &nbsp;
   <button class="btn btn-dark" routerLink="/pizza/build/veggies">NEXT</button>
 </div>

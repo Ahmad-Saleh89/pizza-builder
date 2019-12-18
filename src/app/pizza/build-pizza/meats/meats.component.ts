@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PizzaService } from '../../../services/pizza.service';
 import { MeatService } from '../../../services/meat.service';
 
@@ -7,7 +7,7 @@ import { MeatService } from '../../../services/meat.service';
   templateUrl: './meats.component.html',
   styleUrls: ['./meats.component.css']
 })
-export class MeatsComponent implements OnInit, OnChanges {
+export class MeatsComponent implements OnInit {
 
 // This part should be fetched and updated in the DB 
 // selected false or true should be updated in DB @@@@
@@ -17,9 +17,6 @@ export class MeatsComponent implements OnInit, OnChanges {
 
   constructor(private pizzaService: PizzaService, private meatService: MeatService) { }
 
-  ngOnChanges(meats) {
-    console.log("hello");
-  }
   ngOnInit() { 
     this.fetchMeatToppings();
   }

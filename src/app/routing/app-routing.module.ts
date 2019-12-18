@@ -11,6 +11,7 @@ import { SidesComponent } from '../sides/sides.component';
 import { DessertsComponent } from '../desserts/desserts.component';
 import { DrinksComponent } from '../drinks/drinks.component';
 import { PageNotFoundComponent } from '../page-not-found/page-not-found.component';
+import { CartComponent } from '../cart/cart.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/pizza', pathMatch: 'full' },
@@ -27,6 +28,7 @@ const appRoutes: Routes = [
   { path: 'sides', component: SidesComponent },
   { path: 'desserts', component: DessertsComponent },
   { path: 'drinks', component: DrinksComponent },
+  { path: 'cart', component: CartComponent },
   { path: 'not-found', component: PageNotFoundComponent },
   { path: '**', redirectTo: '/not-found', pathMatch: 'full' }
 ];

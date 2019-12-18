@@ -41,9 +41,14 @@ export class BuildPizzaComponent implements OnInit {
     // console.log(this.previousUrlService.getPreviousUrl());
   }
 
-  getPreviousUrl() {
-    this.previousUrlService.getPreviousUrl();
+  addToCart() {
+    const toppings = [this.sizeCrustData, this.cheese$, this.meat$, this.veggies$];
+    console.log(toppings);
   }
+
+  // getPreviousUrl() {
+  //   this.previousUrlService.getPreviousUrl();
+  // }
 
 }
 

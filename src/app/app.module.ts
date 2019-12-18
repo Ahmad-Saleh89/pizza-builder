@@ -22,10 +22,11 @@ import { PizzaService } from './services/pizza.service';
 import { CheeseService } from './services/cheese.service';
 import { MeatService } from './services/meat.service';
 import { VeggiesService } from './services/veggies.service';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule, AppRoutingModule, HttpClientModule ],
-  declarations: [ AppComponent, HeaderComponent, PizzaComponent, SidesComponent, DessertsComponent, DrinksComponent, PageNotFoundComponent, BuildPizzaComponent, SizeCrustComponent, CheeseComponent, MeatsComponent, VeggiesComponent ],
+  declarations: [ AppComponent, HeaderComponent, PizzaComponent, SidesComponent, DessertsComponent, DrinksComponent, PageNotFoundComponent, BuildPizzaComponent, SizeCrustComponent, CheeseComponent, MeatsComponent, VeggiesComponent, CartComponent ],
   bootstrap:    [ AppComponent ],
   providers: [PreviousUrlService, PizzaService, CheeseService, MeatService, VeggiesService]
 })
