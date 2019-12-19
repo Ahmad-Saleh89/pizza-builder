@@ -16,7 +16,7 @@
             <!-- <div class="col-sm-2 hidden-xs"><img src="" alt="..." class="img-responsive"/></div> -->
             <div class="col-sm-10">
               <h4 class="nomargin">{{ items[0][0][0] }} Crust {{ items[0][0][1] }} Size Pizza</h4>
-              <strong *ngIf="items.length > 1; else noToppings">Toppings:</strong>
+              <strong *ngIf="items[0].length > 1; else noToppings">Toppings:</strong>
                 <ng-template #noToppings>
                   <strong >No toppings have been selected!</strong>
                 </ng-template>
@@ -43,7 +43,9 @@
 
 <hr>
   <div class="row" *ngIf="items.length">
-    <div class="col-md-6">&nbsp;</div>
+    <div class="col-md-6">
+      <button (click)="clearCart()" class="btn  btn-danger">Removal All Items</button>
+    </div>
     <div class="col-md-6">
       <div class="float-right">
         <strong>Total $1.99</strong> &nbsp;

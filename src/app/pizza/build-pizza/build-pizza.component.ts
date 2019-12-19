@@ -46,6 +46,12 @@ export class BuildPizzaComponent implements OnInit {
     this.cartService.addToCart(toppings);
   }
 
+  startOver() {
+    this.sizeCrustData = ["Original", "Medium", "Normal", "BBQ"];
+    this.cheese$ = ["Normal"];
+    this.cheeseToppings = this.meat$ = this.veggies$ = [];
+  }
+
   // getPreviousUrl() {
   //   this.previousUrlService.getPreviousUrl();
   // }

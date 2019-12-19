@@ -24,5 +24,9 @@ export class CartComponent implements OnInit {
       this.meatToppings = this.items[0][2];
       this.veggiesToppings = this.items[0][3];
     }
-  } 
+  }
+
+  clearCart() {
+    this.items = [];
+  }
 }

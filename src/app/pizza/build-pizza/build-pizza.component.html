@@ -2,7 +2,9 @@
   <br>
   <h1>Build Your Own Pizza</h1>
   <div>
-    <span>[{{ cheeseToppings.length + veggies$.length + meat$.length }}] Toppings</span> | <a href="#">Start Over</a>
+    <span>[{{ cheeseToppings.length + veggies$.length + meat$.length }}] Toppings</span> | 
+    <a (click)="startOver()" style="cursor: pointer"
+      routerLink="/pizza/build/size-crust">Start Over</a>
   </div>
   <hr>
   <div class="row">

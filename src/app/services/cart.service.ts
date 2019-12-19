@@ -10,17 +10,17 @@ export class CartService {
 
   constructor() { }
 
-  addToCart(product) {
-    this.items.push(product);
+  addToCart(pizza) {
+    this.items.push(pizza);
   }
 
   getItems() {
     return this.items;
   }
 
-  clearCart() {
-    this.items = [];
-    return this.items;
-  }
+  // clearCart() {
+  //   this.items = [];
+  //   return this.items;
+  // }
 
 }
