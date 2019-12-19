@@ -12,10 +12,16 @@ export class CartService {
 
   constructor() { }
 
+  // Basically get a pizza array and turn it into an array of objects
   addToCart(pizza) {
+    // First, clear the items array
     this.items = [];
+    // items will be an array of ARRAYS
     this.items.push(pizza);
+
     for (const item of this.items) {
+      // orderedPizza will be an array of OBJECTS
+      // Each pizza order will be an object
       this.orderedPizza.push(      
       {
         crust: item[0],
@@ -26,13 +32,15 @@ export class CartService {
     }
   }
 
-  getItems() {
+
+  clearCart() {
+    this.orderedPizza = [];
     return this.orderedPizza;
   }
 
-  // clearCart() {
-  //   this.items = [];
-  //   return this.items;
-  // }
+  getItems() {
+    // Return the array of orders objects
+    return this.orderedPizza;
+  }
 
 }

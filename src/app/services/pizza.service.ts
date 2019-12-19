@@ -81,7 +81,7 @@ export class PizzaService {
       topping.selected = true;
       selectedToppings.push(topping.name);
     }
-    console.log(selectedToppings);
+    // console.log(selectedToppings);
   }
 }
 

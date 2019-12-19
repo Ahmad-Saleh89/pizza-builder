@@ -15,10 +15,12 @@ export class CartComponent implements OnInit {
   constructor(private cartService: CartService) { }
 
   ngOnInit() { 
+    // this items will be an array of objects
     this.items = this.cartService.getItems();
   }
 
   clearCart() {
     this.items = [];
+    this.cartService.clearCart();
   }
 }
