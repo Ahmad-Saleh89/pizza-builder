@@ -6,12 +6,17 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class CartService {
 
-  items = [];
+  // items = [];
 
+  items = [[["Original", "Medium", "Normal", "BBQ"], ["Normal", "Parmesan", "cheddar"], ["Sausage", "beef"], ["tomatoes", "spinach"]]];
   constructor() { }
 
   addToCart(pizza) {
-    this.items.push(pizza);
+    // this.items.push(pizza);
+    for (const item of this.items) {
+      console.log(item);
+    }
+    
   }
 
   getItems() {
