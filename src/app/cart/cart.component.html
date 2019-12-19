@@ -1,6 +1,6 @@
 <div class="container">
       <br><h1>Your Cart</h1><br>
-	<table id="cart" class="table table-hover table-condensed">
+	<table id="cart" class="table table-hover table-condensed" *ngIf="items.length; else empty">
     <thead>
       <tr>
         <th style="width:70%">Your Pizza Order</th>
@@ -15,8 +15,14 @@
           <div class="row">
             <!-- <div class="col-sm-2 hidden-xs"><img src="" alt="..." class="img-responsive"/></div> -->
             <div class="col-sm-10">
-              <h4 class="nomargin">Thin Crust Cheese</h4>
-              <p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet.</p>
+              <h4 class="nomargin">{{ items[0][0][0] }} Crust {{ items[0][0][1] }} Size Pizza</h4>
+              <strong *ngIf="items.length > 1; else noToppings">Toppings:</strong>
+                <ng-template #noToppings>
+                  <strong >No toppings have been selected!</strong>
+                </ng-template>
+                <span *ngFor="let item of cheeseToppings"> {{ item }} |</span>
+                <span *ngFor="let item of meatToppings"> {{ item }} |</span>
+                <span *ngFor="let item of veggiesToppings"> {{ item }} |</span>
             </div>
           </div>
         </td>
@@ -30,8 +36,13 @@
       </tr>
     </tbody>
   </table>
+
+  <ng-template #empty>
+    <h2>Your cart is empty!</h2>
+  </ng-template>
+
 <hr>
-  <div class="row">
+  <div class="row" *ngIf="items.length">
     <div class="col-md-6">&nbsp;</div>
     <div class="col-md-6">
       <div class="float-right">
