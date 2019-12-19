@@ -10,19 +10,19 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
+      <tr *ngFor="let item of items">
         <td>
           <div class="row">
             <!-- <div class="col-sm-2 hidden-xs"><img src="" alt="..." class="img-responsive"/></div> -->
             <div class="col-sm-10">
-              <h4 class="nomargin">{{ items[0][0][0] }} Crust {{ items[0][0][1] }} Size Pizza</h4>
-              <strong *ngIf="items[0].length > 1; else noToppings">Toppings:</strong>
+              <h4 class="nomargin">{{ item.crust[0] }} Crust {{ item.crust[1] }} Size Pizza</h4>
+               <strong *ngIf="item.cheese || item.meat || item.veggies; else noToppings">Toppings:</strong>
                 <ng-template #noToppings>
                   <strong >No toppings have been selected!</strong>
                 </ng-template>
-                <span *ngFor="let item of cheeseToppings"> {{ item }} |</span>
-                <span *ngFor="let item of meatToppings"> {{ item }} |</span>
-                <span *ngFor="let item of veggiesToppings"> {{ item }} |</span>
+                <span *ngFor="let topping of item.cheese"> {{ topping }} |</span>
+                <span *ngFor="let topping of item.meat"> {{ topping }} |</span>
+                <span *ngFor="let topping of item.veggies"> {{ topping }} |</span>
             </div>
           </div>
         </td>
