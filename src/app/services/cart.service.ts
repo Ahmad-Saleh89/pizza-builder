@@ -6,18 +6,21 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class CartService {
 
-  pizzaSubject = new Subject<any[]>();
+  items = [];
 
   constructor() { }
 
-  // Send & Get Pizza Order
-  sendPizzaOrder(data) {
-    console.log("send");
-    this.pizzaSubject.next(data);
+  addToCart(product) {
+    this.items.push(product);
   }
-  getPizzaOrder(): Observable<any[]> {
-    console.log("get");
-    return this.pizzaSubject.asObservable();
+
+  getItems() {
+    return this.items;
+  }
+
+  clearCart() {
+    this.items = [];
+    return this.items;
   }
 
 }

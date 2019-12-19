@@ -8,14 +8,12 @@ import { CartService } from '../services/cart.service';
 })
 export class CartComponent implements OnInit {
 
-  orderedPizza$ = [];
+  items = [];
 
   constructor(private cartService: CartService) { }
 
   ngOnInit() { 
-    this.cartService.getPizzaOrder().subscribe((pizza) => {
-        this.orderedPizza$ = pizza;
-        console.log(this.orderedPizza$); 
-      });
+    this.items = this.cartService.getItems();
+    console.log(this.items);
   } 
 }

@@ -43,7 +43,7 @@ export class BuildPizzaComponent implements OnInit {
 
   addToCart() {
     const toppings = [this.sizeCrustData, this.cheese$, this.meat$, this.veggies$];
-    this.cartService.sendPizzaOrder(toppings);
+    this.cartService.addToCart(toppings);
   }
 
   // getPreviousUrl() {
