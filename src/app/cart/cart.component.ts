@@ -23,7 +23,7 @@ export class CartComponent implements OnInit {
   //     veggies: ["peppers", "Haaahhaa", "olives"]
   //   }
   // ];
-  items;
+  items; 
 
   totalPrice = [];
   constructor(private cartService: CartService) { }
