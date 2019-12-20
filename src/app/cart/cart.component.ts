@@ -25,11 +25,17 @@ export class CartComponent implements OnInit {
   // ];
   items;
 
+  totalPrice = [];
   constructor(private cartService: CartService) { }
 
   ngOnInit() { 
     // this items will be an array of objects
     this.items = this.cartService.getItems();
+
+    for (let item of this.items) {
+      item.price += item.cheese.price + item.meat.price + item.veggies.price;
+      this.totalPrice += item.price;
+    }
   }
 
   clearCart() {

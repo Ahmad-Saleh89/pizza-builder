@@ -20,16 +20,16 @@
                 <ng-template #noToppings>
                   <strong >No toppings have been selected!</strong>
                 </ng-template>
-                <span *ngFor="let topping of item.cheese"> {{ topping }} |</span>
-                <span *ngFor="let topping of item.meat"> {{ topping }} |</span>
-                <span *ngFor="let topping of item.veggies"> {{ topping }} |</span>
+                <span *ngFor="let topping of item.cheese.toppings"> {{ topping }} |</span> 
+                <span *ngFor="let topping of item.meat.toppings"> {{ topping }} |</span>
+                <span *ngFor="let topping of item.veggies.toppings"> {{ topping }} |</span>
             </div>
           </div>
         </td>
         <td>
           <input type="number" class="form-control text-center" value="1">
         </td>
-        <td class="text-center">$ 1.99</td>
+        <td class="text-center">$ <span>{{ item.price }}</span></td>
         <td class="actions">
           <button class="btn btn-danger btn-sm float-right" (click)="deleteItem(x)">X</button>								
         </td>
@@ -48,7 +48,7 @@
     </div>
     <div class="col-md-6">
       <div class="float-right">
-        <strong>Total $1.99</strong> &nbsp;
+        <strong>Total $ {{ totalPrice}}</strong> &nbsp;
         <a href="#" class="btn btn-success">Checkout</a>
       </div>
     </div>

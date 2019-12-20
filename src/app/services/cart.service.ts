@@ -25,9 +25,19 @@ export class CartService {
       this.orderedPizza.push(      
       {
         crust: item[0],
-        cheese: item[1],
-        meat: item[2],
-        veggies: item[3]
+        cheese: { // see notes bellow
+          toppings: item[1].slice(1, item[1].length),
+          price: (item[1].length - 1) * 1.4
+        },
+        meat: {
+          toppings: item[2],
+          price: item[2].length * 1.8
+        },
+        veggies: {
+          toppings: item[3],
+          price: item[3].length * 1.2
+        },
+        price: 10
       });
     }
   }
@@ -40,8 +50,9 @@ export class CartService {
 
   getItems() {
     // Return the array of orders objects
-    console.log(this.orderedPizza);
     return this.orderedPizza;
   }
 
 }
+
+// For the cheese object, basically I'm trying to exclude the first element of the array because it is not a topping. It's the cheese amount.
