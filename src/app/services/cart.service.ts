@@ -40,6 +40,7 @@ export class CartService {
 
   getItems() {
     // Return the array of orders objects
+    console.log(this.orderedPizza);
     return this.orderedPizza;
   }
 

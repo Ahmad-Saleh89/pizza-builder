@@ -10,7 +10,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of items">
+      <tr *ngFor="let item of items; index as x">
         <td>
           <div class="row">
             <!-- <div class="col-sm-2 hidden-xs"><img src="" alt="..." class="img-responsive"/></div> -->
@@ -31,7 +31,7 @@
         </td>
         <td class="text-center">$ 1.99</td>
         <td class="actions">
-          <button class="btn btn-danger btn-sm float-right">X</button>								
+          <button class="btn btn-danger btn-sm float-right" (click)="deleteItem(x)">X</button>								
         </td>
       </tr>
     </tbody>

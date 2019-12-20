@@ -8,8 +8,21 @@ import { CartService } from '../services/cart.service';
 })
 export class CartComponent implements OnInit {
 
-  // items = [[["Original", "Medium", "Normal", "BBQ"], ["Normal", "Parmesan", "cheddar"], ["Sausage", "beef"], ["tomatoes", "spinach"]]];
 
+  // items = [
+  //   {
+  //     crust: ["Original", "Medium", "Normal", "BBQ"],
+  //     cheese: ["Normal", "Mozzarella", "Parmesan"],
+  //     meat: ["Sausage", "beef"],
+  //     veggies: ["peppers", "onions", "olives"]
+  //   },
+  //   {
+  //     crust: ["Original", "Medium", "Normal", "BBQ"],
+  //     cheese: ["Normal", "Hello"],
+  //     meat: ["Ahmad", "Heba"],
+  //     veggies: ["peppers", "Haaahhaa", "olives"]
+  //   }
+  // ];
   items;
 
   constructor(private cartService: CartService) { }
@@ -22,5 +35,9 @@ export class CartComponent implements OnInit {
   clearCart() {
     this.items = [];
     this.cartService.clearCart();
+  }
+
+  deleteItem(index) {
+    this.items.splice(index, 1);
   }
 }
