@@ -9,21 +9,7 @@ import { CartService } from '../services/cart.service';
 export class CartComponent implements OnInit {
 
 
-  // items = [
-  //   {
-  //     crust: ["Original", "Medium", "Normal", "BBQ"],
-  //     cheese: ["Normal", "Mozzarella", "Parmesan"],
-  //     meat: ["Sausage", "beef"],
-  //     veggies: ["peppers", "onions", "olives"]
-  //   },
-  //   {
-  //     crust: ["Original", "Medium", "Normal", "BBQ"],
-  //     cheese: ["Normal", "Hello"],
-  //     meat: ["Ahmad", "Heba"],
-  //     veggies: ["peppers", "Haaahhaa", "olives"]
-  //   }
-  // ];
-  items; 
+  items;
 
   totalPrice = [];
   constructor(private cartService: CartService) { }
