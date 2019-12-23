@@ -11,7 +11,7 @@ export class CartComponent implements OnInit {
 
   items;
 
-  totalPrice = [];
+  totalPrice = 0;
   constructor(private cartService: CartService) { }
 
   ngOnInit() { 
@@ -19,8 +19,8 @@ export class CartComponent implements OnInit {
     this.items = this.cartService.getItems();
 
     for (let item of this.items) {
-      item.price += item.cheese.price + item.meat.price + item.veggies.price;
-      this.totalPrice += item.price;
+      item.price = Math.round((10 + item.cheese.price + item.meat.price + item.veggies.price) * 100) / 100 ;
+      this.totalPrice += Math.round(item.price * 100) / 100;
     }
   }
 
@@ -29,7 +29,8 @@ export class CartComponent implements OnInit {
     this.cartService.clearCart();
   }
 
-  deleteItem(index) {
+  deleteItem(index, price) {
     this.items.splice(index, 1);
+    this.totalPrice -= price;
   }
 }
