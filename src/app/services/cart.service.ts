@@ -22,9 +22,14 @@ export class CartService {
     for (const item of this.items) {
       // orderedPizza will be an array of OBJECTS
       // Each pizza order will be an object
-      this.orderedPizza.push(      
+      this.orderedPizza.push(  
       {
-        crust: item[0],
+        crust: {
+          style: item[0][0],
+          size: item[0][1],
+          cut: item[0][2],
+          sauce: item[0][3]
+        },
         cheese: { // see notes bellow
           toppings: item[1].slice(1, item[1].length),
           price: (item[1].length - 1) * 1.4
@@ -37,8 +42,9 @@ export class CartService {
           toppings: item[3],
           price: item[3].length * 1.2
         },
-        price: 10
+        price: 0
       });
+    
     }
   }
 

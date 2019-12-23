@@ -8,7 +8,6 @@ import { CartService } from '../services/cart.service';
 })
 export class CartComponent implements OnInit {
 
-
   items;
 
   totalPrice = 0;
@@ -18,14 +17,29 @@ export class CartComponent implements OnInit {
     // this items will be an array of objects
     this.items = this.cartService.getItems();
 
+    // Calculate item's price & total price
     for (let item of this.items) {
-      item.price = Math.round((10 + item.cheese.price + item.meat.price + item.veggies.price) * 100) / 100 ;
+      let initialPrice;
+      switch (item.crust.size) {
+        case 'Medium':
+        initialPrice = 9;
+        break;
+
+        case 'Large':
+        initialPrice = 10;
+        break;
+
+        default:
+        initialPrice = 8;
+      }
+      item.price = Math.round((initialPrice + item.cheese.price + item.meat.price + item.veggies.price) * 100) / 100 ;
       this.totalPrice += Math.round(item.price * 100) / 100;
     }
   }
 
   clearCart() {
     this.items = [];
+    this.totalPrice = 0;
     this.cartService.clearCart();
   }
 
