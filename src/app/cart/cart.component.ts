@@ -19,22 +19,28 @@ export class CartComponent implements OnInit {
 
     // Calculate item's price & total price
     for (let item of this.items) {
-      let initialPrice;
       switch (item.crust.size) {
         case 'Medium':
-        initialPrice = 9;
+        item.initialPrice = 9;
         break;
 
         case 'Large':
-        initialPrice = 10;
+        item.initialPrice = 10;
         break;
 
         default:
-        initialPrice = 8;
+        item.initialPrice = 8;
       }
-      item.price = Math.round((initialPrice + item.cheese.price + item.meat.price + item.veggies.price) * 100) / 100 ;
+      item.initialPrice = Math.round((item.initialPrice + item.cheese.price + item.meat.price + item.veggies.price) * 100) / 100;
+      item.price = item.initialPrice * item.quantity;
       this.totalPrice += Math.round(item.price * 100) / 100;
     }
+  }
+
+  changeQty(index) {
+    this.totalPrice -= this.items[index].price;
+    this.items[index].price = this.items[index].initialPrice * this.items[index].quantity;
+    this.totalPrice += this.items[index].price;
   }
 
   clearCart() {

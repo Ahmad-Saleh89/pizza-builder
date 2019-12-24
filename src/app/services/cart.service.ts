@@ -42,7 +42,9 @@ export class CartService {
           toppings: item[3],
           price: item[3].length * 1.2
         },
-        price: 0
+        initialPrice: 8,
+        price: 0,
+        quantity: 1
       });
     
     }
