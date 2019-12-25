@@ -19,6 +19,7 @@ export class MeatsComponent implements OnInit {
 
   ngOnInit() { 
     this.fetchMeatToppings();
+    this.selectedMeats = this.meatService.getSelectedMeat();
   }
 
   fetchMeatToppings(): void {

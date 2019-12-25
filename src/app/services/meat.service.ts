@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 export class MeatService {
 
   meatArray = [];
+  selectedMeats = [];
 
   constructor(private http: HttpClient) { }
 
@@ -25,4 +26,9 @@ export class MeatService {
         return this.meatArray;
       }));
   }
+
+  getSelectedMeat() {
+    return this.selectedMeats;
+  }
+
 }
