@@ -5,6 +5,8 @@ import { map } from 'rxjs/operators';
 @Injectable()
 export class MeatService {
 
+  selectedMeats = [];
+
   constructor(private http: HttpClient) { }
 
 // Fetch meats from the server
@@ -19,6 +21,14 @@ export class MeatService {
         }
         return meatArray;
       }));
+  }
+
+  saveToppings(meats) {
+    this.selectedMeats = meats;
+  }
+
+  getSelectedMeat() {
+    return this.selectedMeats;
   }
 
 }

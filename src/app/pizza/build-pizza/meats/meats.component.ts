@@ -19,6 +19,8 @@ export class MeatsComponent implements OnInit {
 
   ngOnInit() { 
     this.fetchMeatToppings();
+    this.selectedMeats = this.meatService.getSelectedMeat();
+    console.log(this.selectedMeats);
   }
 
   fetchMeatToppings(): void {
@@ -30,10 +32,13 @@ export class MeatsComponent implements OnInit {
 
   selectMeat(meat) {
     this.pizzaService.selectTopping(meat, this.selectedMeats);
-    // Send the created array to the service 
+    // Send the created array to the service  
     // this.pizzaService.displayMeatData(this.selectedMeats);
 
     this.pizzaService.sendMeatData(this.selectedMeats);
+  }
 
+  saveToppings() {
+    this.meatService.saveToppings(this.selectedMeats);
   }
 }
