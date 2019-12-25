@@ -5,20 +5,30 @@ import { map } from 'rxjs/operators';
 @Injectable()
 export class VeggiesService {
 
+  veggiesArray = [];
+  selectedVeggies = []
+
   constructor(private http: HttpClient) { }
 
 // Fetch veggies from the server
   getVeggiesToppings() {
     return this.http.get<any>('https://pizzana-4b4ac.firebaseio.com/veggies.json')
       .pipe(map(veggiesData => {
-        const veggiesArray = [];
+        const veggies = [];
         for (const veggie in veggiesData ) {
           if (veggiesData.hasOwnProperty(veggie)) { // just to make sure we don't access some prototype property
-            veggiesArray.push({...veggiesData[veggie], name: veggie});
+            veggies.push({...veggiesData[veggie], name: veggie});
           }
         }
-        return veggiesArray;
+        if(this.veggiesArray.length !== veggies.length) {
+          this.veggiesArray = veggies;
+        }
+        return this.veggiesArray;
       }));
+  }
+
+  getSelectedveggies() {
+    return this.selectedVeggies;
   }
 
 }

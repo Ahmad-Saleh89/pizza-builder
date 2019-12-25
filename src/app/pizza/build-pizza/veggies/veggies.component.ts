@@ -17,6 +17,7 @@ export class VeggiesComponent implements OnInit {
 
   ngOnInit() { 
     this.fetchVeggiesToppings();
+    this.selectedVeggies = this.veggiesService.getSelectedveggies();
   }
 
   fetchVeggiesToppings(): void {
