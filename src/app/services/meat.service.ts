@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 @Injectable()
 export class MeatService {
 
-  selectedMeats = [];
+  meatArray = [];
 
   constructor(private http: HttpClient) { }
 
@@ -13,22 +13,16 @@ export class MeatService {
   getMeatToppings() {
     return this.http.get<any>('https://pizzana-4b4ac.firebaseio.com/meats.json')
       .pipe(map(meatData => {
-        const meatArray = [];
+        const meats = []
         for (const meat in meatData ) {
           if (meatData.hasOwnProperty(meat)) { // just to make sure we don't access some prototype property
-            meatArray.push({...meatData[meat], name: meat});
+            meats.push({...meatData[meat], name: meat});
           }
         }
-        return meatArray;
+        if(this.meatArray.length !== meats.length) {
+          this.meatArray = meats;
+        }
+        return this.meatArray;
       }));
   }
-
-  saveToppings(meats) {
-    this.selectedMeats = meats;
-  }
-
-  getSelectedMeat() {
-    return this.selectedMeats;
-  }
-
 }
