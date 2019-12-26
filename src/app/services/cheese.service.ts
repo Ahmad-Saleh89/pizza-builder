@@ -7,6 +7,8 @@ import { Cheese } from '../classes/cheese';
 export class CheeseService {
 
   cheeseAmounts = [];
+  cheeseArray = [];
+  selectedCheese = [];
 
   constructor(private http: HttpClient) { }
 
@@ -38,9 +40,15 @@ export class CheeseService {
                 selected: false
                 });
             }
-        return toppings;
+        if(this.cheeseArray.length !== toppings.length) {
+          this.cheeseArray = toppings;
+        }
+        return this.cheeseArray;
       }));
   }
 
+  getSelectedCheese() {
+    return this.selectedCheese;
+  }
 }
 

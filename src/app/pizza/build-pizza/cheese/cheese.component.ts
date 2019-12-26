@@ -57,4 +57,4 @@ export class CheeseComponent implements OnInit {
     this.router.navigate(['/pizza/build/meats']);
     this.pizzaService.sendCheeseData(this.myCheese);
   }
-}
+} 
