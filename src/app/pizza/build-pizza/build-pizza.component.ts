@@ -5,6 +5,9 @@ import { PreviousUrlService } from '../../services/previous-url.service';
 
 import { PizzaService } from '../../services/pizza.service';
 import { CartService } from '../../services/cart.service';
+import { MeatService } from '../../services/meat.service';
+import { CheeseService } from '../../services/cheese.service';
+import { VeggiesService } from '../../services/veggies.service';
 
 // import { Sizecrust } from '../../interfaces/sizecrust';
 // import { Cheese } from '../../interfaces/cheese';
@@ -24,7 +27,13 @@ export class BuildPizzaComponent implements OnInit {
   meat$ = []; // observable
   veggies$ = []; // observable
 
-  constructor(private previousUrlService: PreviousUrlService, private pizzaService: PizzaService, private cartService: CartService ) { }
+  constructor(
+    private pizzaService: PizzaService,
+    private cartService: CartService,
+    private meatService: MeatService,
+    private cheeseService: CheeseService,
+    private veggiesService: VeggiesService,
+    ) { }
 
   ngOnInit() {
     // First Approach
@@ -51,6 +60,10 @@ export class BuildPizzaComponent implements OnInit {
     this.sizeCrustData = ["Original", "Medium", "Normal", "BBQ"];
     this.cheese$ = ["Normal"];
     this.cheeseToppings = this.meat$ = this.veggies$ = [];
+
+    this.meatService.startOver();
+    this.cheeseService.startOver();
+    this.veggiesService.startOver();
   }
 
   // getPreviousUrl() {

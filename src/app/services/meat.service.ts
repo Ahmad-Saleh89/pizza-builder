@@ -27,8 +27,16 @@ export class MeatService {
       }));
   }
 
-  getSelectedMeat() {
+  getSelectedMeat() { 
     return this.selectedMeats;
   }
 
+  startOver() {
+    this.selectedMeats = [];
+    for (let meat of this.meatArray) {
+      if(meat.selected) {
+        meat.selected = false;
+      }
+    }
+  }
 }

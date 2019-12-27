@@ -10,7 +10,7 @@ import { MeatService } from '../../../services/meat.service';
 export class MeatsComponent implements OnInit {
 
   meats = [];
-
+ 
   selectedMeats = [];
 
   constructor(private pizzaService: PizzaService, private meatService: MeatService) { }

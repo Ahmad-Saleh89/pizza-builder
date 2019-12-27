@@ -31,4 +31,12 @@ export class VeggiesService {
     return this.selectedVeggies;
   }
 
+  startOver() {
+    this.selectedVeggies = [];
+    for (let veggie of this.veggiesArray) {
+      if(veggie.selected) {
+        veggie.selected = false;
+      }
+    }
+  }
 }

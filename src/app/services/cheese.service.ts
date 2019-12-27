@@ -50,5 +50,14 @@ export class CheeseService {
   getSelectedCheese() {
     return this.selectedCheese;
   }
+
+  startOver() {
+    this.selectedCheese = ["normal"];
+    for (let cheese of this.cheeseArray) {
+      if(cheese.selected) {
+        cheese.selected = false;
+      }
+    }
+  }
 } 
 
