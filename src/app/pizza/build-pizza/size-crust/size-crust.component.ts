@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { PizzaService } from '../../../services/pizza.service';
+import { SizeCrustService } from '../../../services/size-crust.service';
 
 @Component({
   selector: 'app-size-crust',
@@ -20,16 +21,23 @@ export class SizeCrustComponent implements OnInit {
   pizzaCuts = ['Normal', 'Square', 'No Cut'];
   sauces = ['BBQ', 'Alfredo', 'Ranch', 'Buffalo'];
 
-  // Default [cruststyle,  size,     cut,    sauce]
-  myPizza = ['Original', 'Medium', 'Normal', 'BBQ'];
+  myPizza = [];  // Default [cruststyle, size, cut, sauce]
 
-  constructor( private route: ActivatedRoute, private router: Router, private pizzaService: PizzaService) { }
 
-  ngOnInit() {  }
+  constructor( 
+    private route: ActivatedRoute, 
+    private router: Router, 
+    private pizzaService: PizzaService,
+    private sizeCrustService: SizeCrustService
+    ) { }
+
+  ngOnInit() {
+    this.sizeCrustService.sizecrust.subscribe(data => this.myPizza = data);
+  }
 
   // Update myPizza array on select
   onSelect(index, elem) {
-    this.myPizza[index] = elem;
+    this.sizeCrustService.selectSizeCrust(index, elem);
     // Send the created array to the service 
     this.pizzaService.updateSizeCrustData(this.myPizza);
   }

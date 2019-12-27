@@ -8,6 +8,7 @@ import { CartService } from '../../services/cart.service';
 import { MeatService } from '../../services/meat.service';
 import { CheeseService } from '../../services/cheese.service';
 import { VeggiesService } from '../../services/veggies.service';
+import { SizeCrustService } from '../../services/size-crust.service';
 
 // import { Sizecrust } from '../../interfaces/sizecrust';
 // import { Cheese } from '../../interfaces/cheese';
@@ -33,6 +34,7 @@ export class BuildPizzaComponent implements OnInit {
     private meatService: MeatService,
     private cheeseService: CheeseService,
     private veggiesService: VeggiesService,
+    private sizeCrustService: SizeCrustService
     ) { }
 
   ngOnInit() {
@@ -53,7 +55,6 @@ export class BuildPizzaComponent implements OnInit {
   addToCart() {
     const toppings = [this.sizeCrustData, this.cheese$, this.meat$, this.veggies$];
     this.cartService.addToCart(toppings);
-    // console.log(toppings);
   }
 
   startOver() {
@@ -64,6 +65,7 @@ export class BuildPizzaComponent implements OnInit {
     this.meatService.startOver();
     this.cheeseService.startOver();
     this.veggiesService.startOver();
+    this.sizeCrustService.startOver();
   }
 
   // getPreviousUrl() {
