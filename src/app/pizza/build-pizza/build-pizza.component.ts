@@ -19,7 +19,7 @@ export class BuildPizzaComponent implements OnInit {
   sizeCrustData = [];
 
   cheese$ = ["Normal"]; // observable
-  cheeseToppings = []; // See notes below
+  cheeseToppings = []; // See notes below 
 
   meat$ = []; // observable
   veggies$ = []; // observable

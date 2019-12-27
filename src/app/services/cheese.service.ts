@@ -8,7 +8,7 @@ export class CheeseService {
 
   cheeseAmounts = [];
   cheeseArray = [];
-  selectedCheese = [];
+  selectedCheese = ["normal"];
 
   constructor(private http: HttpClient) { }
 
@@ -50,5 +50,5 @@ export class CheeseService {
   getSelectedCheese() {
     return this.selectedCheese;
   }
-}
+} 
 

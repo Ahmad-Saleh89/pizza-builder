@@ -16,16 +16,17 @@ export class CheeseComponent implements OnInit {
 
   cheeseAmounts = [];
   toppings = [];
-
+  
   // Store the chosen Cheese info in this array
   // The first element will be the cheese amount - the rest will be the toppings
-  myCheese = ["Normal"];
+  myCheese = []; 
 
   constructor( private route: ActivatedRoute, private router: Router, private pizzaService: PizzaService, private cheeseService: CheeseService) { }
 
   ngOnInit() {
     this.fetchCheeseAmount();
     this.fetchCheeseToppings();
+    this.myCheese = this.cheeseService.getSelectedCheese();
   }
 
 
@@ -57,4 +58,4 @@ export class CheeseComponent implements OnInit {
     this.router.navigate(['/pizza/build/meats']);
     this.pizzaService.sendCheeseData(this.myCheese);
   }
-} 
+}

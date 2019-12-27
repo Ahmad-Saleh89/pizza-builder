@@ -9,8 +9,6 @@ import { MeatService } from '../../../services/meat.service';
 })
 export class MeatsComponent implements OnInit {
 
-// This part should be fetched and updated in the DB 
-// selected false or true should be updated in DB @@@@
   meats = [];
 
   selectedMeats = [];

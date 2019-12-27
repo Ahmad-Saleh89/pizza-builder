@@ -3,7 +3,7 @@
   <div class="card-header">How much cheese?</div>
   <div class="card-body">
     <div class="form-check d-inline p-4" *ngFor="let amount of cheeseAmounts">
-      <input class="form-check-input" type="radio" name="amount.amount" [id]="amount.amount" [value]="amount.amount" (click)="selectAmount(amount)" [checked]="amount.selected">
+      <input class="form-check-input" type="radio" name="amount.amount" [id]="amount.amount" [value]="amount.amount" (click)="selectAmount(amount)" [checked]="myCheese[0] == amount.amount">
       <label class="form-check-label" [for]="amount.amount" (click)="selectAmount(amount)">
         {{ amount.amount | titlecase }}
       </label>
