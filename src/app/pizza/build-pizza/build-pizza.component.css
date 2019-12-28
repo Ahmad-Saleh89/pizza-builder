@@ -5,3 +5,13 @@
 .card-title {
   color: #17a2b8;
 }
+
+.cart-modal {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translate( -50%);
+}
+.cart-modal p {
+  margin-bottom: 0;
+}

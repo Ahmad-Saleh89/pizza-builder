@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Router, ActivatedRoute } from '@angular/router';
 
-import { PreviousUrlService } from '../../services/previous-url.service';
+// import { PreviousUrlService } from '../../services/previous-url.service';
 
 import { PizzaService } from '../../services/pizza.service';
 import { CartService } from '../../services/cart.service';
@@ -24,9 +24,13 @@ export class BuildPizzaComponent implements OnInit {
   meat$ = []; // observable
   veggies$ = []; // observable
 
+  cart_modal = false;
+  
   constructor(
     private pizzaService: PizzaService,
-    private cartService: CartService
+    private cartService: CartService,
+    private router: Router,
+    private route: ActivatedRoute
     ) { }
 
   ngOnInit() {
@@ -46,7 +50,17 @@ export class BuildPizzaComponent implements OnInit {
   addToCart() {
     const toppings = [this.sizeCrustData, this.cheese$, this.meat$, this.veggies$];
     this.cartService.addToCart(toppings);
-    this.startOver();
+    this.showCartModal();
+    setTimeout(() =>{
+      this.startOver();
+    },3000);
+  }
+
+  showCartModal() {
+    this.cart_modal = true;
+    setTimeout(() =>{
+      this.cart_modal = false;
+    },3000);
   }
 
   startOver() {
@@ -56,6 +70,7 @@ export class BuildPizzaComponent implements OnInit {
     this.cheeseToppings = this.meat$ = this.veggies$ = [];
     // Start Over in Pizza Service
     this.pizzaService.startOver();
+    this.router.navigate(["/pizza/build/size-crust"]);
   }
 
   // getPreviousUrl() {

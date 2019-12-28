@@ -3,8 +3,7 @@
   <h1>Build Your Own Pizza</h1>
   <div>
     <span>[{{ cheeseToppings.length + veggies$.length + meat$.length }}] Toppings</span> | 
-    <a (click)="startOver()" style="cursor: pointer"
-      routerLink="/pizza/build/size-crust">Start Over</a>
+    <a (click)="startOver()" style="cursor: pointer; color: blue">Start Over</a>
   </div>
   <hr>
   <div class="row">
@@ -66,8 +65,18 @@
     </div>
   </div>
 <br><hr>
-<div class="row">
-    <button class="btn btn-success btn-lg mx-auto" (click)="addToCart()">Add To Cart</button>
+<div class="row" style="position: relative">
+
+  <div class="modal-dialog cart-modal" *ngIf="cart_modal">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>Please check the cart to see your order!</p>
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-success btn-lg mx-auto" (click)="addToCart()">Add To Cart</button>
 </div>
+
+
 
 </div>
