@@ -3,6 +3,11 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
+import { MeatService } from './meat.service';
+import { CheeseService } from './cheese.service';
+import { VeggiesService } from './veggies.service';
+import { SizeCrustService } from './size-crust.service';
+
 import { Pizza } from '../interfaces/pizza';
 
 // import { Sizecrust } from '../interfaces/sizecrust';
@@ -21,7 +26,13 @@ export class PizzaService {
   private meatSubject = new Subject<any[]>();
   private veggiesSubject = new Subject<any[]>();
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private meatService: MeatService,
+    private cheeseService: CheeseService,
+    private veggiesService: VeggiesService,
+    private sizeCrustService: SizeCrustService
+  ) { }
 
 // Update user selected options
   updateSizeCrustData(data) {
@@ -82,6 +93,15 @@ export class PizzaService {
       selectedToppings.push(topping.name);
     }
     // console.log(selectedToppings);
+  }
+
+  startOver() {
+    this.meatService.startOver();
+    this.cheeseService.startOver();
+    this.veggiesService.startOver();
+    this.sizeCrustService.startOver();
+    // This logic is important for the build-pizza component
+    this.updateSizeCrustData(this.defaultSizeCrust);
   }
 }
 
