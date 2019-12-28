@@ -48,13 +48,14 @@ export class BuildPizzaComponent implements OnInit {
       // Slice the cheese amount part from the array - leave the toppings only
       this.cheeseToppings = this.cheese$.slice(1, this.cheese$.length);
     });
-    
+    console.log(this.sizeCrustData);
     // console.log(this.previousUrlService.getPreviousUrl());
   }
 
   addToCart() {
     const toppings = [this.sizeCrustData, this.cheese$, this.meat$, this.veggies$];
     this.cartService.addToCart(toppings);
+    this.startOver();
   }
 
   startOver() {
@@ -66,6 +67,8 @@ export class BuildPizzaComponent implements OnInit {
     this.cheeseService.startOver();
     this.veggiesService.startOver();
     this.sizeCrustService.startOver();
+
+    this.pizzaService.updateSizeCrustData(this.sizeCrustData);
   }
 
   // getPreviousUrl() {
