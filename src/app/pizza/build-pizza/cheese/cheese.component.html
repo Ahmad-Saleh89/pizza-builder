@@ -20,7 +20,7 @@
     <div class="card"  [class.selected]="topping.selected">
       <img class="card-img-top" src="{{ topping.image }}" alt="{{ topping.name }}">
       <div class="card-body">
-        <p class="card-text">{{ topping.name }}</p> 
+        <p class="card-text">{{ topping.name | titlecase }}</p> 
       </div>
     </div>
   </div>

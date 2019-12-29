@@ -18,7 +18,10 @@ export class CartService {
     this.items = [];
     // items will be an array of ARRAYS
     this.items.push(pizza);
+  }
 
+  // Convert the items array into an array of objects
+  convertToObj() {
     for (const item of this.items) {
       // orderedPizza will be an array of OBJECTS
       // Each pizza order will be an object
@@ -46,18 +49,11 @@ export class CartService {
         price: 0,
         quantity: 1
       });
-    
     }
   }
 
-
-  clearCart() {
-    this.orderedPizza = [];
-    return this.orderedPizza;
-  }
-
-  getItems() {
-    // Calculate item's price
+  // Calculate each item's price
+  calcItemPrice() {
     for (let item of this.orderedPizza) {
       switch (item.crust.size) {
         case 'Medium':
@@ -74,7 +70,17 @@ export class CartService {
       item.initialPrice = Math.round((item.initialPrice + item.cheese.price + item.meat.price + item.veggies.price) * 100) / 100;
       item.price = item.initialPrice * item.quantity;
     }
+  }
+
+  getItems() {
+    this.convertToObj();
+    this.calcItemPrice();
     // Return the array of orders objects
+    return this.orderedPizza;
+  }
+
+  clearCart() {
+    this.orderedPizza = [];
     return this.orderedPizza;
   }
 

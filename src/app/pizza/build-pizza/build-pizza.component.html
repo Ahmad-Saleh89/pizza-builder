@@ -29,12 +29,12 @@
 
           <h5 class="card-title">Meat Toppings</h5>
           <ul class="list-group" >
-            <li class="list-group-item" *ngFor="let meat of meat$">{{ meat }}</li>
+            <li class="list-group-item" *ngFor="let meat of meat$">{{ meat | titlecase }}</li>
           </ul>
           <hr>
           <h5 class="card-title">Veggies Toppings</h5>
           <ul class="list-group">
-            <li class="list-group-item" *ngFor="let veggie of veggies$">{{ veggie }}</li>
+            <li class="list-group-item" *ngFor="let veggie of veggies$">{{ veggie | titlecase }}</li>
           </ul>
         </div>
       </div>

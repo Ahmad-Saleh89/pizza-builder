@@ -3,7 +3,7 @@
     <div class="card"  [class.selected]="veggie.selected">
       <img class="card-img-top" src="{{veggie.image}}" alt="{{ veggie.name }}">
       <div class="card-body">
-        <p class="card-text">{{ veggie.name }}</p>
+        <p class="card-text">{{ veggie.name | titlecase }}</p>
       </div>
     </div>
   </div>
