@@ -12,7 +12,7 @@
     <tbody>
       <tr *ngFor="let item of items; index as x">
         <td>
-          <div class="row">
+          <div class="row" *ngIf="item.crust; else notCustomized">
             <!-- <div class="col-sm-2 hidden-xs"><img src="" alt="..." class="img-responsive"/></div> -->
             <div class="col-sm-10">
               <h4 class="nomargin">{{ item.crust.style }} Crust {{ item.crust.size }} Size Pizza</h4>
@@ -24,6 +24,11 @@
                 <span *ngFor="let topping of item.meat.toppings"> {{ topping }} |</span>
                 <span *ngFor="let topping of item.veggies.toppings"> {{ topping }} |</span>
             </div>
+          </div>
+          <div class="row">
+            <ng-template #notCustomized>
+              <h2>Hi!</h2>
+            </ng-template>
           </div>
         </td>
         <td>

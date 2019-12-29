@@ -7,28 +7,27 @@
       <div class="card-body">
         <h5 class="card-title">Create Your Own Pizza</h5>
         <p class="card-text"></p><p>&nbsp;</p>
-        <a routerLink="/pizza/build/size-crust" class="btn btn-success">Costumize</a>
+        <a routerLink="/pizza/build/size-crust" class="btn btn-success">Customize</a>
       </div>
     </div>
   </div><br>
-  <div class="col-md-6 col-lg-3" *ngFor="let singlePizza of pizza" style="margin-bottom: 10px;">
+  <div class="col-md-6 col-lg-3" *ngFor="let singlePizza of pizza; index as i" style="margin-bottom: 10px;">
     <div class="card ">
       <img src="{{ singlePizza.image}}" class="card-img-top" alt="..." style="max-height: 180px;">
       <div class="card-body">
         <h5 class="card-title">{{ singlePizza.pizzaName }}</h5>
         <p class="card-text">
-          <select class="form-control d-inline col-8">
-            <option value="{{ singlePizza.price }}">$ {{ singlePizza.price }}</option>
+          <select class="form-control d-inline col-8" [(ngModel)]="pizzaSize">
+            <option value="Small">Small $ {{ singlePizza.price | number}}</option>
+            <option value="Medium">Medium $ {{ singlePizza.price + 2 | number}}</option>
+            <option value="Large">Large $ {{ singlePizza.price + 4 | number}}</option>
           </select>
-          <select class="form-control d-inline col-3 float-right">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
+          <input 
+            type="number" class="form-control text-center d-inline col-3 float-right"
+            value="{{ singlePizza.quantity }}" min="1" max="10"
+            [(ngModel)]="singlePizza.quantity">
         </p>
-        <a href="#" class="btn btn-primary">Add to Cart</a>
+        <a style="color: #fff" class="btn btn-primary" (click)="addToCart(singlePizza, pizzaSize)">Add to Cart</a>
       </div>
     </div>
   </div>

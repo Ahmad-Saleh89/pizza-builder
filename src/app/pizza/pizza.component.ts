@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PizzaService } from '../services/pizza.service';
+import { CartService } from '../services/cart.service';
 
-import { Pizza } from '../interfaces/pizza';
+// import { Pizza } from '../interfaces/pizza';
 
 @Component({
   selector: 'app-pizza',
@@ -10,9 +11,11 @@ import { Pizza } from '../interfaces/pizza';
 })
 export class PizzaComponent implements OnInit {
 
-  pizza: Pizza[] = [];
+  pizza = [];
 
-  constructor(private pizzaService: PizzaService) {}
+  pizzaSize = "Large";
+
+  constructor(private pizzaService: PizzaService, private cartService: CartService) {}
 
   ngOnInit() {
     this.fetchPizza();
@@ -20,7 +23,29 @@ export class PizzaComponent implements OnInit {
 
   fetchPizza(): void {
    this.pizzaService.fetchPizza()
-       .subscribe(pizza => this.pizza = pizza);
+       .subscribe(pizza => {
+          this.pizza = pizza;
+       }); 
+  }
+
+  addToCart(item, size) {
+    item.size = size;
+    let price = 0;
+    switch (item.size) {
+      case 'Medium':
+      price = 2;
+      break;
+
+      case 'Large':
+      price = 4;
+      break;
+
+      default:
+      price = 0;
+    }
+    item.totalPrice = parseFloat(((item.price + price) * item.quantity).toFixed(2));
+    this.cartService.addToCart(item);
+    console.log(item)
   }
 }
 
