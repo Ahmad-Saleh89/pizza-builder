@@ -15,19 +15,19 @@
     <div class="card ">
       <img src="{{ singlePizza.image}}" class="card-img-top" alt="..." style="max-height: 180px;">
       <div class="card-body">
-        <h5 class="card-title">{{ singlePizza.pizzaName }}</h5>
+        <h5 class="card-title">{{ singlePizza.itemName }}</h5>
         <p class="card-text">
-          <select class="form-control d-inline col-8" [(ngModel)]="pizzaSize">
-            <option value="Small">Small $ {{ singlePizza.price | number}}</option>
-            <option value="Medium">Medium $ {{ singlePizza.price + 2 | number}}</option>
-            <option value="Large">Large $ {{ singlePizza.price + 4 | number}}</option>
+          <select class="form-control d-inline col-8" [(ngModel)]="singlePizza.itemSize">
+            <option value="Small">Small $ {{ singlePizza.minPrice | number}}</option>
+            <option value="Medium">Medium $ {{ singlePizza.minPrice + 2 | number}}</option>
+            <option value="Large">Large $ {{ singlePizza.minPrice + 4 | number}}</option>
           </select>
           <input 
             type="number" class="form-control text-center d-inline col-3 float-right"
             value="{{ singlePizza.quantity }}" min="1" max="10"
             [(ngModel)]="singlePizza.quantity">
         </p>
-        <a style="color: #fff" class="btn btn-primary" (click)="addToCart(singlePizza, pizzaSize)">Add to Cart</a>
+        <a style="color: #fff" class="btn btn-primary" (click)="addToCart(singlePizza, singlePizza.itemSize)">Add to Cart</a>
       </div>
     </div>
   </div>

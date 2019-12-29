@@ -18,7 +18,7 @@ export class CartService {
     this.items = [];
     // items will be an array of ARRAYS
     this.items.push(pizza);
-    console.log(this.items)
+    // console.log(this.items);
   }
 
   // Convert the items array into an array of objects
@@ -47,7 +47,7 @@ export class CartService {
             toppings: item[3],
             price: item[3].length * 1.2
           },
-          initialPrice: 8,
+          singlePrice: 8,
           price: 0,
           quantity: 1
         });
@@ -60,21 +60,21 @@ export class CartService {
   // Calculate each item's price
   calcItemPrice() {
     for (let item of this.orderedItems) {
-      if(item.length) {
+      if(item.crust) {
         switch (item.crust.size) {
           case 'Medium':
-          item.initialPrice = 9;
+          item.singlePrice = 9;
           break;
 
           case 'Large':
-          item.initialPrice = 10;
+          item.singlePrice = 10;
           break;
 
           default:
-          item.initialPrice = 8;
+          item.singlePrice = 8;
         }
-      item.initialPrice = Math.round((item.initialPrice + item.cheese.price + item.meat.price + item.veggies.price) * 100) / 100;
-      item.price = item.initialPrice * item.quantity;
+      item.singlePrice = Math.round((item.singlePrice + item.cheese.price + item.meat.price + item.veggies.price) * 100) / 100;
+      item.price = item.singlePrice * item.quantity;
       }
     }
   }

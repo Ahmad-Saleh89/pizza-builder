@@ -71,7 +71,7 @@ export class PizzaService {
         for (const pizza in pizzaData ) {
           if (pizzaData.hasOwnProperty(pizza)) { // just to make sure we don't access some prototype property
             // Push objects to the pizzaArray
-            pizzaArray.push({...pizzaData[pizza], pizzaName: pizza, quantity: 1});
+            pizzaArray.push({...pizzaData[pizza], itemName: pizza, quantity: 1, itemSize: 'Large'});
           }
         }
         return pizzaArray;

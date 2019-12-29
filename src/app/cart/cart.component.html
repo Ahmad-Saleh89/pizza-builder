@@ -27,7 +27,9 @@
           </div>
           <div class="row">
             <ng-template #notCustomized>
-              <h2>Hi!</h2>
+              <h4 class="nomargin">{{ item.size}} {{ item.itemName }}</h4>
+              <strong>Toppings:</strong>
+              <span *ngFor="let topping of item.toppingsArr"> {{ topping | titlecase}} | </span>
             </ng-template>
           </div>
         </td>
