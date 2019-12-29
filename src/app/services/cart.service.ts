@@ -57,6 +57,23 @@ export class CartService {
   }
 
   getItems() {
+    // Calculate item's price
+    for (let item of this.orderedPizza) {
+      switch (item.crust.size) {
+        case 'Medium':
+        item.initialPrice = 9;
+        break;
+
+        case 'Large':
+        item.initialPrice = 10;
+        break;
+
+        default:
+        item.initialPrice = 8;
+      }
+      item.initialPrice = Math.round((item.initialPrice + item.cheese.price + item.meat.price + item.veggies.price) * 100) / 100;
+      item.price = item.initialPrice * item.quantity;
+    }
     // Return the array of orders objects
     return this.orderedPizza;
   }

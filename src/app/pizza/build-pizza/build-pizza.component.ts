@@ -53,14 +53,14 @@ export class BuildPizzaComponent implements OnInit {
     this.showCartModal();
     setTimeout(() =>{
       this.startOver();
-    },3000);
+    },2000);
   }
 
   showCartModal() {
     this.cart_modal = true;
     setTimeout(() =>{
       this.cart_modal = false;
-    },3000);
+    },4000);
   }
 
   startOver() {
