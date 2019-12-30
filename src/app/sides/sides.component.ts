@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SidesService } from '../services/sides.service';
 
 @Component({
   selector: 'app-sides',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidesComponent implements OnInit {
 
-  constructor() { }
+  sides = [];
+
+  constructor(private sidesService: SidesService) { }
 
   ngOnInit() {
+    this.fetchSides();
   }
 
+  fetchSides(): void {
+   this.sidesService.getSides()
+      .subscribe(sides => {
+        this.sides = sides;
+        console.log(sides);
+      });
+  }
 }
