@@ -1,3 +1,31 @@
-<p>
-drinks works!
-</p>
+<div class="modal-dialog cart-modal" *ngIf="cart_modal">
+  <div class="modal-content">
+    <div class="modal-body">
+      <p>Please check the cart to see your order!</p>
+    </div>
+  </div>
+</div>
+
+<br><h2>PIZZANA DRINKS</h2><br>
+
+<div class="row">
+  <div class="col-md-6 col-lg-3" *ngFor="let drink of drinks; index as i" style="margin-bottom: 10px;">
+    <div class="card ">
+      <img src="{{ drink.image }}" class="card-img-top" alt="..." style="max-height: 180px;">
+      <div class="card-body">
+        <h5 class="card-title">{{ drink.drink }}</h5>
+        <p class="card-text pb-2">
+          <select class="form-control d-inline col-8" [(ngModel)]="drink.size">
+            <option value="20 oz">20 oz $ {{ drink.singlePrice }}</option>
+            <option value="2-Liter">2-Liter $ {{ drink.singlePrice + 0.70 }}</option>
+          </select>
+          <input 
+            type="number" class="form-control text-center d-inline col-3 float-right"
+            value="{{ drink.quantity }}" min="1" max="10"
+            [(ngModel)]="drink.quantity">
+        </p>
+        <a style="color: #fff" class="btn btn-primary" (click)="addToCart(drink)">Add to Cart</a>
+      </div>
+    </div>
+  </div>
+</div>

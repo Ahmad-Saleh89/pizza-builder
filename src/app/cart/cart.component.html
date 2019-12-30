@@ -40,6 +40,13 @@
               ({{ item.amount }}) Pieces with {{ item.dipping }} Sauce Dipping
             </div>
           </div>
+          <!-- Drinks -->
+          <div class="row" *ngIf="item.drink">
+            <div class="col-sm-10">
+              <h4 class="nomargin">{{ item.drink }} Drink</h4>
+              Size: {{ item.size }}
+            </div>
+          </div>
         </td>
         <td>
           <input 
