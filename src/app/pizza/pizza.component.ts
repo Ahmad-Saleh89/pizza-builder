@@ -13,6 +13,8 @@ export class PizzaComponent implements OnInit {
 
   pizza = [];
 
+  cart_modal = false;
+
   constructor(private pizzaService: PizzaService, private cartService: CartService) {}
 
   ngOnInit() {
@@ -26,9 +28,12 @@ export class PizzaComponent implements OnInit {
        }); 
   }
   
-  chooseSize(size) {
-    console.log(size);
-  }
+  /**
+   * item.minPrice: the price of a SINGLE SMALL item
+   * item.singlePrice: the price of a SINGLE item with a choosen size
+   * item.price: the price of this item * quantity
+   * price: is just a local variable
+   */
   addToCart(item, size) {
     item.size = size;
     let price = item.minPrice;
@@ -47,7 +52,14 @@ export class PizzaComponent implements OnInit {
     item.singlePrice = price;
     item.price = parseFloat((price * item.quantity).toFixed(2));
     this.cartService.addToCart(item);
-    // console.log(item);
+    this.showCartModal();
+  }
+
+  showCartModal() {
+    this.cart_modal = true;
+    setTimeout(() =>{
+      this.cart_modal = false;
+    },2000);
   }
 }
 
