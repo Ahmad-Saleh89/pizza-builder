@@ -6,83 +6,76 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class CartService {
 
-  items = [];
-
+  // orderedItems will be an array of OBJECTS
   orderedItems = [];
 
   constructor() { }
 
-  // Basically get a pizza array and turn it into an array of objects
-  addToCart(pizza) {
-    // First, clear the items array
-    this.items = [];
-    // items will be an array of ARRAYS
-    this.items.push(pizza);
-    // console.log(this.items);
-  }
-
-  // Convert the items array into an array of objects
-  convertToObj() {
-    for (const item of this.items) {
-      // orderedItems will be an array of OBJECTS
-      // Each pizza order will be an object
-      if(item.length) { // the if statement is for the customized pizza orders
-        this.orderedItems.push(
-        {
-          crust: {
-            style: item[0][0],
-            size: item[0][1],
-            cut: item[0][2],
-            sauce: item[0][3]
-          },
-          cheese: { // see notes bellow
-            toppings: item[1].slice(1, item[1].length),
-            price: (item[1].length - 1) * 1.4
-          },
-          meat: {
-            toppings: item[2],
-            price: item[2].length * 1.8
-          },
-          veggies: {
-            toppings: item[3],
-            price: item[3].length * 1.2
-          },
-          singlePrice: 8,
-          price: 0,
-          quantity: 1
-        });
-      }else{
+  addToCart(item) {
+      // item.length: because in Create Your Own Pizza, the received item will be an array
+      if(item.length) {
+        this.convertToObj(item);
+      }else{ 
+        // Just a regular pre-built pizza 
+        // the received item is already an Object
         this.orderedItems.push(item);
       }
-    }
   }
 
-  // Calculate each item's price
-  calcItemPrice() {
-    for (let item of this.orderedItems) {
-      if(item.crust) {
-        switch (item.crust.size) {
-          case 'Medium':
-          item.singlePrice = 9;
-          break;
+  // Convert the item array into an object
+  convertToObj(item) {
+    // [[crust & size], [cheese], [meat], [veggies]]
+    const itemObj = 
+      {
+        crust: {
+          style: item[0][0],
+          size: item[0][1],
+          cut: item[0][2],
+          sauce: item[0][3]
+        },
+        cheese: { // see notes bellow
+          toppings: item[1].slice(1, item[1].length),
+          price: (item[1].length - 1) * 1.4
+        },
+        meat: {
+          toppings: item[2],
+          price: item[2].length * 1.8
+        },
+        veggies: {
+          toppings: item[3],
+          price: item[3].length * 1.2
+        },
+        singlePrice: 8,
+        price: 0,
+        quantity: 1
+      };
 
-          case 'Large':
-          item.singlePrice = 10;
-          break;
+      this.calcItemPrice(itemObj);
+      this.orderedItems.push(itemObj);
+  }
 
-          default:
-          item.singlePrice = 8;
-        }
-      item.singlePrice = Math.round((item.singlePrice + item.cheese.price + item.meat.price + item.veggies.price) * 100) / 100;
-      item.price = item.singlePrice * item.quantity;
-      }
+// For Customized Pizza Orders Only
+  calcItemPrice(item) {
+    switch (item.crust.size) {
+      case 'Medium':
+      item.singlePrice = 9;
+      break;
+
+      case 'Large':
+      item.singlePrice = 10; 
+      break;
+
+      default:
+      item.singlePrice = 8;
     }
+
+    item.singlePrice = Math.round((item.singlePrice + item.cheese.price + item.meat.price + item.veggies.price) * 100) / 100;
+    item.price = item.singlePrice * item.quantity;
+
+    return item;
   }
 
   getItems() {
-    this.convertToObj();
-    this.calcItemPrice();
-    // Return the array of orders objects
     return this.orderedItems;
   }
 

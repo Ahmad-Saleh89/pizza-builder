@@ -31,7 +31,7 @@ export class PizzaComponent implements OnInit {
   /**
    * item.minPrice: the price of a SINGLE SMALL item
    * item.singlePrice: the price of a SINGLE item with a choosen size
-   * item.price: the price of this item * quantity
+   * item.price: the price of this item.singlePrice * quantity
    * price: is just a local variable
    */
   addToCart(item, size) {
