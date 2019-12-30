@@ -50,12 +50,12 @@ export class CartService {
         quantity: 1
       };
 
-      this.calcItemPrice(itemObj);
+      this.calcsinglePrice(itemObj);
       this.orderedItems.push(itemObj);
   }
 
 // For Customized Pizza Orders Only
-  calcItemPrice(item) {
+  calcsinglePrice(item) {
     switch (item.crust.size) {
       case 'Medium':
       item.singlePrice = 9;

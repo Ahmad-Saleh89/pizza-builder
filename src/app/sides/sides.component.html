@@ -1,21 +1,32 @@
-<br>
+
+<div class="modal-dialog cart-modal" *ngIf="cart_modal">
+  <div class="modal-content">
+    <div class="modal-body">
+      <p>Please check the cart to see your order!</p>
+    </div>
+  </div>
+</div>
+
+<br><h2>PIZZANA SIDES</h2><br>
+
 <div class="row">
   <div class="col-md-6 col-lg-3" *ngFor="let side of sides; index as i" style="margin-bottom: 10px;">
     <div class="card ">
       <img src="{{ side.image }}" class="card-img-top" alt="..." style="max-height: 180px;">
       <div class="card-body">
-        <h5 class="card-title">hi</h5>
-        <p class="card-text">
-          <!-- <select class="form-control d-inline col-8" [(ngModel)]="singlePizza.itemSize">
-            <option value="Small">Small $ {{ singlePizza.minPrice | number}}</option>
-            <option value="Medium">Medium $ {{ singlePizza.minPrice + 2 | number}}</option>
-            <option value="Large">Large $ {{ singlePizza.minPrice + 4 | number}}</option>
-          </select> -->
+        <h5 class="card-title">{{ side.name }}</h5>
+        <p class="card-text pb-2">
+          {{ side.amount }} pieces | $ {{ side.singlePrice }}
           <input 
             type="number" class="form-control text-center d-inline col-3 float-right"
             value="{{ side.quantity }}" min="1" max="10"
             [(ngModel)]="side.quantity">
         </p>
+        <div class="mb-2">
+          <select class="form-control d-inline" [(ngModel)]="side.dipping">
+            <option value="{{ dipping }}" *ngFor="let dipping of dippings">{{ dipping }} Sauce</option>
+          </select>
+        </div>
         <a style="color: #fff" class="btn btn-primary" (click)="addToCart(side)">Add to Cart</a>
       </div>
     </div>

@@ -3,7 +3,7 @@
 	<table id="cart" class="table table-hover table-condensed" *ngIf="items.length; else empty">
     <thead>
       <tr>
-        <th style="width:70%">Your Pizza Order</th>
+        <th style="width:70%">Your Orders</th>
         <th style="width:8%; text-align: center;">Quantity</th>
         <th style="width:12%; text-align: center;">Price</th>
         <th style="width:10%"></th>
@@ -12,8 +12,8 @@
     <tbody>
       <tr *ngFor="let item of items; index as x">
         <td>
-          <div class="row" *ngIf="item.crust; else notCustomized">
-            <!-- <div class="col-sm-2 hidden-xs"><img src="" alt="..." class="img-responsive"/></div> -->
+          <!-- Customized Pizza - Create Your Pizza  -->
+          <div class="row" *ngIf="item.crust">
             <div class="col-sm-10">
               <h4 class="nomargin">{{ item.crust.style }} Crust {{ item.crust.size }} Size Pizza</h4>
                <strong *ngIf="item.cheese.toppings.length || item.meat.toppings.length || item.veggies.toppings.length; else noToppings">Toppings:</strong>
@@ -25,12 +25,20 @@
                 <span *ngFor="let topping of item.veggies.toppings"> {{ topping }} |</span>
             </div>
           </div>
-          <div class="row">
-            <ng-template #notCustomized>
-              <h4 class="nomargin">{{ item.size}} {{ item.itemName }}</h4>
+          <!-- Pre-Built Pizza -->
+          <div class="row" *ngIf="item.toppingsArr">
+            <div class="col-sm-10">
+              <h4>{{ item.size}} {{ item.itemName }}</h4>
               <strong>Toppings:</strong>
               <span *ngFor="let topping of item.toppingsArr"> {{ topping | titlecase}} | </span>
-            </ng-template>
+            </div>
+          </div>
+          <!-- Sides -->
+          <div class="row" *ngIf="item.dipping">
+            <div class="col-sm-10">
+              <h4 class="nomargin">{{ item.name }}</h4>
+              ({{ item.amount }}) Pieces with {{ item.dipping }} Sauce Dipping
+            </div>
           </div>
         </td>
         <td>
