@@ -12,7 +12,7 @@ export class CartService {
   totalPrice = 0;
 
   // Total Price Observable
-  private totalPriceSource = new Subject();
+  private totalPriceSource = new Subject<Number>();
   total = this.totalPriceSource.asObservable();
 
   constructor() { }
@@ -36,6 +36,7 @@ export class CartService {
         // Calculate total price
         this.totalPrice += Math.round(item.price * 100) / 100;
       }
+      this.update();
   }
 
   // Convert the item array into an object
@@ -106,6 +107,7 @@ export class CartService {
   clearCart() {
     this.items = [];
     this.totalPrice = 0;
+    this.update();
     return this.items;
   }
 
@@ -116,14 +118,17 @@ export class CartService {
     this.items[index].price = this.items[index].singlePrice * this.items[index].quantity;
     // Last: add the new price to the total price
     this.totalPrice += this.items[index].price;
-    // Update total price Observable
-    this.totalPriceSource.next(this.totalPrice);
+    this.update();
   }
 
   deleteItem(index, price) {
     this.items.splice(index, 1);
     this.totalPrice -= price;
-    // Update total price Observable
+    this.update();
+  }
+
+  // Update Total Price Observable
+  update() {
     this.totalPriceSource.next(this.totalPrice);
   }
 }

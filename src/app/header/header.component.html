@@ -36,9 +36,9 @@
     <div class="floar-right">
       <button 
           type="button" class="btn"
-          style="background: #ab131b; color: #fff;"
+          style="background: #ab131b; color: #fff; min-width: 90px;"
           routerLink="/cart"
-          routerLinkActive="active"> <i class="fas fa-shopping-cart"></i> CART</button>
+          routerLinkActive="active"> <i class="fas fa-shopping-cart"></i> $ {{ totalPrice | number}}</button>
     </div>
   </div>
 </nav>
