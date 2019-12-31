@@ -23,8 +23,7 @@ export class CartService {
   }
 
   // Convert the item array into an object
-  convertToObj(item) {
-    // [[crust & size], [cheese], [meat], [veggies]]
+  convertToObj(item) {     // [[crust & size], [cheese], [meat], [veggies]]
     const itemObj = 
       {
         crust: {
@@ -47,7 +46,8 @@ export class CartService {
         },
         singlePrice: 8,
         price: 0,
-        quantity: 1
+        quantity: 1,
+        image: 'https://p7.hiclipart.com/preview/127/761/313/pizza-bagel-delicatessen-clip-art-pizza-png-clipart.jpg'
       };
 
       this.calcsinglePrice(itemObj);

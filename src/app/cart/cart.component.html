@@ -3,7 +3,8 @@
 	<table id="cart" class="table table-hover table-condensed" *ngIf="items.length; else empty">
     <thead>
       <tr>
-        <th style="width:70%">Your Orders</th>
+        <th style="width:10%">Your Orders</th>
+        <th style="width:60%"></th>
         <th style="width:8%; text-align: center;">Quantity</th>
         <th style="width:12%; text-align: center;">Price</th>
         <th style="width:10%"></th>
@@ -11,6 +12,9 @@
     </thead>
     <tbody>
       <tr *ngFor="let item of items; index as x">
+        <td>
+          <img src="{{ item.image }}" alt="" style="max-width: 100px;">
+        </td>
         <td>
           <!-- Customized Pizza - Create Your Pizza  -->
           <div class="row" *ngIf="item.crust">
@@ -33,11 +37,11 @@
               <span *ngFor="let topping of item.toppingsArr"> {{ topping | titlecase}} | </span>
             </div>
           </div>
-          <!-- Sides -->
-          <div class="row" *ngIf="item.dipping">
+          <!-- Sides  Or Desserts-->
+          <div class="row" *ngIf="item.name">
             <div class="col-sm-10">
               <h4 class="nomargin">{{ item.name }}</h4>
-              ({{ item.amount }}) Pieces with {{ item.dipping }} Sauce Dipping
+              ({{ item.amount }}) Pieces <span *ngIf="item.dipping">with {{ item.dipping }} Sauce Dipping</span>
             </div>
           </div>
           <!-- Drinks -->

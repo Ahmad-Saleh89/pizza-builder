@@ -1,3 +1,29 @@
-<p>
-desserts works!
-</p>
+
+<div class="modal-dialog cart-modal" *ngIf="cart_modal">
+  <div class="modal-content">
+    <div class="modal-body">
+      <p>Please check the cart to see your order!</p>
+    </div>
+  </div>
+</div>
+
+<br><h2>PIZZANA DESSERTS</h2><br>
+
+<div class="row">
+  <div class="col-md-6 col-lg-3" *ngFor="let dessert of desserts; index as i" style="margin-bottom: 10px;">
+    <div class="card ">
+      <img src="{{ dessert.image }}" class="card-img-top" alt="..." style="max-height: 180px;">
+      <div class="card-body">
+        <h5 class="card-title">{{ dessert.name }}</h5>
+        <p class="card-text pb-2">
+          {{ dessert.amount }} pieces | $ {{ dessert.singlePrice }}
+          <input 
+            type="number" class="form-control text-center d-inline col-3 float-right"
+            value="{{ dessert.quantity }}" min="1" max="10"
+            [(ngModel)]="dessert.quantity">
+        </p>
+        <a style="color: #fff" class="btn btn-primary" (click)="addToCart(dessert)">Add to Cart</a>
+      </div>
+    </div>
+  </div>
+</div>

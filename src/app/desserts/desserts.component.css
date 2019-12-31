@@ -1,0 +1,14 @@
+.cart-modal {
+  position: fixed;
+  top: 30px;
+  left: 50%;
+  border-radius: 10px;
+  transform: translate(-50%);
+  z-index: 100;
+  color: #ab131b;
+  box-shadow: 0 9px 6px -7px #777;
+  }
+.cart-modal p {
+  margin-bottom: 0;
+  text-align: center;
+}
