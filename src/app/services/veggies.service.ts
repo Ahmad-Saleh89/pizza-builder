@@ -40,3 +40,12 @@ export class VeggiesService {
     }
   }
 }
+
+/**
+ * Basically when the user comes back to the veggie section after navigating away,
+ * the selected toppings will be gone because the veggies array will be refetched again from this service
+ * To solve this:
+ * (this.veggiesArray.length !== veggies.length) this is true only the first time the veggies are fetched from the DB
+ * After that, the veggieArray will be returned as is to the veggies component no matter how many times
+ * the getVeggieToppings() function gets called
+ */

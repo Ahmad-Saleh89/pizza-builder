@@ -59,5 +59,14 @@ export class CheeseService {
       }
     }
   }
-} 
+}
 
+
+/**
+ * Basically when the user comes back to the cheese section after navigating away,
+ * the selected toppings will be gone because the cheese array will be refetched again from this service
+ * To solve this:
+ * (this.cheeseArray.length !== toppings.length) this is true only the first time the cheese are fetched from the DB
+ * After that, the cheeseArray will be returned as is to the cheese component no matter how many times
+ * the getCheeseToppings() function gets called
+ */

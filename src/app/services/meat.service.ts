@@ -20,6 +20,7 @@ export class MeatService {
             meats.push({...meatData[meat], name: meat});
           }
         }
+        // This logic here is to maintain the selected meat toppings if any. See Notes bellow
         if(this.meatArray.length !== meats.length) {
           this.meatArray = meats;
         }
@@ -40,3 +41,12 @@ export class MeatService {
     }
   }
 }
+
+/**
+ * Basically when the user comes back to the meat section after navigating away,
+ * the selected toppings will be gone because the meats array will be refetched again from this service
+ * To solve this:
+ * (this.meatArray.length !== meats.length) this is true only the first time the meats are fetched from the DB
+ * After that, the meatArray will be returned as is to the meats component no matter how many times
+ * the getMeatToppings() function gets called
+ */

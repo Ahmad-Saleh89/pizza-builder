@@ -23,6 +23,8 @@ export class SizeCrustService {
 
   startOver() {
     this.pizza = ['Original', 'Medium', 'Normal', 'BBQ'];
+    
+    // To default radio inputs in the size-crust component
     this.sizeCrustSource.next(this.pizza);
   }
 }
