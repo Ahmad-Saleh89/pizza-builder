@@ -10,34 +10,19 @@ export class CartComponent implements OnInit {
 
   items;
 
-  totalPrice = 0;
+  totalPrice: Number = 0;
+
   constructor(private cartService: CartService) { }
 
   ngOnInit() { 
     // this items will be an array of objects
     this.items = this.cartService.getItems();
-
-    for (let item of this.items) {
-      // Calculate total price
-      this.totalPrice += Math.round(item.price * 100) / 100;
-
-      // Convert toppings object into toppings array | Non-Customized pre-built Pizza
-      if(item.toppings) {
-        item.toppingsArr = []
-        for (let topping in item.toppings){
-          item.toppingsArr.push(topping);
-        }
-      }
-    }
+    this.totalPrice = this.cartService.getTotalPrice();
+    this.cartService.total.subscribe(price => this.totalPrice = price);
   }
 
   changeQty(index) {
-    // First: substract the current price of this very item from the total price
-    this.totalPrice -= this.items[index].price;
-    // Second: calculate the new price of this very item
-    this.items[index].price = this.items[index].singlePrice * this.items[index].quantity;
-    // Last: add the new price to the total price
-    this.totalPrice += this.items[index].price;
+    this.cartService.changeQty(index);
   }
 
   clearCart() {
@@ -47,7 +32,6 @@ export class CartComponent implements OnInit {
   }
 
   deleteItem(index, price) {
-    this.items.splice(index, 1);
-    this.totalPrice -= price;
+    this.cartService.deleteItem(index, price);
   }
 }
