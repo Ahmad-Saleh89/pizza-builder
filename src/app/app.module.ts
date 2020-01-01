@@ -29,10 +29,11 @@ import { SidesService } from './services/sides.service';
 import { DessertsService } from './services/desserts.service';
 import { DrinksService } from './services/drinks.service';
 import { FooterComponent } from './footer/footer.component';
+import { DropdownDirective } from './dropdown.directive';
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule, AppRoutingModule, HttpClientModule ],
-  declarations: [ AppComponent, HeaderComponent, PizzaComponent, SidesComponent, DessertsComponent, DrinksComponent, PageNotFoundComponent, BuildPizzaComponent, SizeCrustComponent, CheeseComponent, MeatsComponent, VeggiesComponent, CartComponent, FooterComponent ],
+  declarations: [ AppComponent, HeaderComponent, PizzaComponent, SidesComponent, DessertsComponent, DrinksComponent, PageNotFoundComponent, BuildPizzaComponent, SizeCrustComponent, CheeseComponent, MeatsComponent, VeggiesComponent, CartComponent, FooterComponent, DropdownDirective ],
   bootstrap:    [ AppComponent ],
   providers: [PreviousUrlService, PizzaService, CheeseService, MeatService, VeggiesService, CartService, SizeCrustService, SidesService, DessertsService, DrinksService]
 })
